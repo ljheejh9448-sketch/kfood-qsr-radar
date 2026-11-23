@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="국가별 글로벌 QSR K-Food 신메뉴 출시 이력과 주간 모니터링 뉴스 후보를 확인하는 대시보드" />
+  <meta name="color-scheme" content="light" />
+  <title>Global QSR · K-Food Radar</title>
+  
+  
+  
+  <style>:root{--ink:#17222e;--muted:#87919b;--line:#e9ecef;--paper:#f8fafb;--orange:#ff7047;--orange-soft:#fff1ec;--navy:#142332;--green:#189873;--light:#fff;--radius:17px;font-family:'DM Sans','Noto Sans KR',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.shell{min-height:100vh;display:flex}.sidebar{width:260px;flex:0 0 260px;background:#fff;border-right:1px solid #e7ebef;position:fixed;inset:0 auto 0 0;z-index:40;display:flex;flex-direction:column;padding:28px 17px 21px}.brand{display:flex;align-items:center;gap:11px;padding:0 8px 40px}.brand-glyph{display:grid;place-items:center;background:var(--orange);color:white;width:37px;height:37px;border-radius:12px;font-size:27px;font-weight:800;transform:rotate(-9deg)}.brand-glyph span{transform:rotate(9deg)}.brand strong{display:block;font-size:15px;letter-spacing:-.6px}.brand em{font-style:normal;color:var(--orange)}.brand small{display:block;font-size:8px;letter-spacing:1.5px;color:#9aa3aa;margin-top:4px;font-weight:800}.side-label{color:#a6aeb5;font-size:10px;font-weight:800;letter-spacing:1.5px;padding:0 16px;margin-bottom:12px}.side-label.spaced{margin-top:39px}.side-nav{display:grid;gap:7px}.nav-item{display:flex;align-items:center;gap:11px;border-radius:9px;min-height:42px;padding:0 12px;color:#65717e;font-weight:700;font-size:12px;transition:.15s}.nav-item:hover,.nav-item.active{color:#ef653e;background:#fff1eb}.nav-icon{width:21px;text-align:center;font-size:20px;font-weight:600;line-height:1}.side-count{margin-left:auto;background:#f2f3f5;border-radius:6px;padding:2px 6px;color:#87909a;font-size:10px}.nav-item.active .side-count{background:#ffe1d5;color:#dc633e}.new-dot{height:6px;width:6px;border-radius:50%;background:#ffa45f;margin-left:auto}.side-filter{display:flex;align-items:center;text-align:left;gap:13px;background:none;border:none;padding:11px 17px;border-radius:9px;width:100%;font-size:15px}.side-filter:hover{background:#f7f9fa}.side-filter span:nth-child(2){font-size:10px;letter-spacing:.65px;color:#677381;font-weight:700;flex:1}.side-filter span:last-child{color:#b9bfc5}.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding:23px 12px 0}.cadence{font-size:10px;font-weight:800;letter-spacing:.75px;color:#677483}.cadence small{display:block;font-size:10px;margin:8px 0 0 15px;color:#8994a0;font-weight:500;letter-spacing:0}.live-bullet{display:inline-block;width:7px;height:7px;border-radius:50%;background:#24b38e;margin-right:5px;box-shadow:0 0 0 3px #e2f8f0}.side-bottom p{font-size:10px;color:#abb3ba;margin-top:20px;line-height:1.5}.workarea{margin-left:260px;min-width:0;flex:1}.topbar{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 45px}.breadcrumb{font-size:10px;letter-spacing:1.35px;color:#afb8c2;font-weight:800}.breadcrumb span{margin:0 8px;color:#cbd1d7}.breadcrumb strong{color:#5b6875}.top-actions{display:flex;align-items:center;gap:17px}.today-label{font-size:10px;color:#8b97a3;font-weight:700}.top-divider{height:18px;width:1px;background:#e6eaf0}.top-badge{font-size:10px;font-weight:800;letter-spacing:.5px;color:#328b77;background:#f0faf7;border:1px solid #d9f3e9;border-radius:7px;padding:8px 10px}.menu-toggle{display:none}main{max-width:1510px;padding:38px 45px 46px;margin:auto;min-height:calc(100vh - 125px)}.view{display:none}.view.active{display:block}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:25px}.eyebrow{font-size:10px;color:var(--orange);font-weight:800;letter-spacing:2.1px;margin-bottom:9px}.page-head h1{font-size:33px;line-height:1.2;letter-spacing:-1.4px;margin:0 0 10px;font-weight:800}.page-head h1 span{color:var(--orange)}.page-head p{color:#82909b;font-size:12px;line-height:1.65;margin:0}.asof{border:1px solid #e6eaf0;background:#fff;color:#7c8893;border-radius:6px;padding:11px 12px;font-size:9px;letter-spacing:.75px;font-weight:800;white-space:nowrap}.hero{height:295px;border-radius:18px;background:radial-gradient(circle at 83% -10%,#334559,#142535 53%,#101f2f 100%);position:relative;overflow:hidden;display:flex;justify-content:space-between;color:#fff;padding:30px 38px 30px 42px}.hero:after{position:absolute;content:'';width:355px;height:355px;border:1px solid #4d5c68;border-radius:50%;right:40px;top:-76px;opacity:.35}.hero-pattern{position:absolute;inset:0;pointer-events:none}.hero-pattern span{position:absolute;color:#ff6d4c;font-size:165px;line-height:1;opacity:.88;right:13%;top:13%;transform:rotate(15deg)}.hero-pattern span:nth-child(2){font-size:62px;right:9%;top:63%;color:#ff9c68}.hero-pattern span:nth-child(3){font-size:40px;right:36%;top:12%;opacity:.3;color:#ffa585}.hero-copy{position:relative;z-index:2}.hero-chip{display:inline-flex;align-items:center;background:#2d3a48;border:1px solid #425365;border-radius:5px;padding:7px 11px;color:#c7d1db;letter-spacing:1.25px;font-size:9px;font-weight:800}.hero-pulse{width:6px;height:6px;border-radius:50%;background:#fa8463;margin-right:7px}.hero h2{margin:17px 0 9px;font-size:32px;line-height:1.15;letter-spacing:-1.25px}.hero h2 em{font-style:normal;color:#ff9e7a}.hero p{margin:0;color:#a7b7c2;font-size:11px;line-height:1.75}.hero-btn{margin-top:18px;border:none;background:#ff754f;border-radius:6px;padding:10px 15px;color:#fff;font-size:11px;font-weight:800}.hero-btn span{padding-left:22px}.hero-btn:hover{background:#ff5e38}.hero-stamp{align-self:flex-end;z-index:2;text-align:right;opacity:.95}.hero-stamp small{display:block;font-size:9px;letter-spacing:2px;color:#abbcca;margin-bottom:9px}.hero-stamp strong{display:block;font-size:11px;letter-spacing:1.6px;line-height:1.65}.hero-stamp>span{display:block;font-size:8px;letter-spacing:1.5px;color:#768b9d;margin-top:12px}.section-meta{display:flex;align-items:center;justify-content:space-between;margin:30px 0 15px}.section-meta h3{font-size:15px;letter-spacing:-.35px;margin:0;font-weight:800}.section-meta small{font-size:10px;color:#a2adb6;font-weight:500;margin-left:8px;letter-spacing:0}.section-meta>span{font-size:9px;letter-spacing:.6px;color:#a3adb7;font-weight:800}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.metric{border:1px solid var(--line);background:#fff;border-radius:13px;padding:18px 18px 17px;min-height:139px}.metric-icon{border-radius:9px;width:30px;height:30px;display:grid;place-items:center;font-size:17px;font-weight:800;margin-bottom:14px}.metric-icon.coral{background:#fff0eb;color:#ff7855}.metric-icon.sky{background:#eaf4ff;color:#599ce0}.metric-icon.violet{background:#f2eeff;color:#8876dc}.metric-icon.mint{background:#e7f9f1;color:#43b68c}.metric-label{color:#9aa5af;letter-spacing:1px;font-size:9px;font-weight:800}.metric-line{display:flex;align-items:baseline;gap:8px;margin-top:5px}.metric-line strong{font-weight:800;font-size:30px;letter-spacing:-1.3px}.metric-unit{font-size:9px;color:#bec6cb;font-weight:800;letter-spacing:.6px}.metric-foot{font-size:10px;color:#a1adb6;margin-top:5px}.overview-grid{display:grid;grid-template-columns:1.27fr 1fr;gap:16px;margin-top:16px}.panel{background:#fff;border:1px solid var(--line);border-radius:13px;padding:23px 25px}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.panel-head small,.method-panel>small{font-size:9px;color:#a6b0ba;font-weight:800;letter-spacing:1.2px}.panel-head h3,.method-panel h3{font-size:16px;margin:5px 0 0;letter-spacing:-.45px}.panel-note{font-size:9px;color:#afb6bc}.bar-chart{display:grid;gap:15px}.bar-row{display:grid;grid-template-columns:112px 1fr 26px;align-items:center;gap:12px;font-size:10px}.bar-row>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#64707c;font-weight:700}.bar-track{height:7px;border-radius:7px;background:#f4f6f8;overflow:hidden}.bar-fill{height:100%;border-radius:7px;background:#fb8a65}.bar-row:nth-child(2) .bar-fill{background:#ffad87}.bar-row:nth-child(3) .bar-fill{background:#e6ad91}.bar-row:nth-child(4) .bar-fill{background:#9ab5c5}.bar-row:nth-child(5) .bar-fill{background:#b2c5d0}.bar-row b{font-size:10px;color:#89949f;text-align:right}.country-list{display:grid;gap:14px}.country-row{display:flex;align-items:center;gap:11px;font-size:11px}.country-flag{display:grid;place-items:center;background:#f7f8f9;border-radius:8px;width:28px;height:28px;font-size:18px}.country-name{flex:1;color:#596574;font-weight:700}.country-count{font-weight:800;color:#253344;font-size:11px;background:#f5f7f9;padding:4px 8px;border-radius:5px}.country-row .country-rank{font-size:10px;color:#b4bec6;width:14px}.text-link{border:0;background:transparent;color:#e66b4b;font-weight:800;font-size:11px}.text-link span{margin-left:8px}.recent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.recent-card{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:transform .16s,border-color .16s}.recent-card:hover{transform:translateY(-3px);border-color:#ffb9a5}.food-art{height:102px;background:linear-gradient(130deg,#f4e6df,#fdf4e9);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.food-art:before,.food-art:after{content:'';position:absolute;width:135px;height:135px;border:1px solid rgba(242,139,107,.26);border-radius:50%;top:-38px;right:-11px}.food-art:after{width:80px;height:80px;top:49px;right:72px;background:rgba(255,255,255,.3)}.food-art.art-chicken{background:linear-gradient(130deg,#faf1e5,#f9e7d8)}.food-art.art-burger{background:linear-gradient(135deg,#fef2e3,#fce6c7)}.food-art.art-pizza{background:linear-gradient(130deg,#fff0e6,#f5dde2)}.food-art.art-sides{background:linear-gradient(135deg,#eaf2ea,#f9eddf)}.food-art.art-other{background:linear-gradient(130deg,#e9edf8,#f4eafa)}.food-emoji{font-size:56px;filter:drop-shadow(0 8px 8px #b97f6230);z-index:2}.food-art small{position:absolute;top:13px;left:14px;color:#9c7368;font-size:9px;font-weight:800;letter-spacing:.5px}.recent-card-body{padding:14px 16px 17px}.recent-meta{font-size:9px;color:#9ca7b0;font-weight:700}.recent-meta span{color:#ee815e;margin:0 5px}.recent-title{font-size:13px;font-weight:800;margin:9px 0 7px;line-height:1.45;min-height:38px}.recent-desc{font-size:10px;color:#8a98a3;line-height:1.7;height:35px;overflow:hidden}.recent-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.pill{display:inline-block;padding:5px 8px;background:#fff1eb;color:#d7795d;border-radius:5px;font-size:9px;font-weight:800}.pill.grey{background:#f3f6f8;color:#8894a0}.pill.blue{background:#eff4fa;color:#6486a9}.mini-arrow{color:#eb8769;font-size:16px}.notice{display:flex;gap:11px;margin-top:22px;background:#fff5ef;border:1px solid #ffe5d9;padding:13px 16px;border-radius:9px;color:#a57462;font-size:10px;line-height:1.6}.notice>span{font-size:18px}.notice p{margin:0}.footer{height:55px;border-top:1px solid #e9edf0;padding:0 45px;display:flex;align-items:center;justify-content:space-between;color:#a5afb7;font-size:9px;font-weight:600;gap:15px}.footer-sep{color:#ff9372;padding:0 8px}.compact{margin-bottom:29px}.export-btn{padding:11px 14px;background:#192c3e;border:0;border-radius:7px;color:white;font-weight:800;font-size:10px;white-space:nowrap}.export-btn:hover{background:#ff744e}.filters-box{background:#fff;border:1px solid var(--line);padding:17px;border-radius:11px}.search-field{display:flex;align-items:center;gap:9px;background:#f6f8fa;border:1px solid #edf0f2;padding:0 13px;border-radius:7px;min-height:42px;flex:1}.search-field span{font-size:20px;color:#9ba8b5;line-height:1}.search-field input{background:transparent;border:0;outline:none;width:100%;min-width:0;color:#304154;font-size:11px}.search-field input::placeholder{color:#a8b0b8}.select-filters{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}select{background:#fff;border:1px solid #e5e9ee;border-radius:7px;padding:9px 29px 9px 11px;color:#596779;font-size:10px;min-width:125px;appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="8"%3E%3Cpath d="M1 1l5 5 5-5" stroke="%239aa7b5" fill="none"/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 10px center}.reset-btn{border:0;background:none;color:#f07d5b;font-size:11px;font-weight:700;padding:9px}.results-head{display:flex;justify-content:space-between;align-items:center;margin:24px 0 13px;font-size:12px;color:#83909a}.results-head strong{font-size:19px;color:#1c2937}.results-head small{color:#a9b3bb;font-size:10px}.results-head label{display:flex;align-items:center;gap:8px;color:#94a0aa;font-size:10px}.results-head select{min-width:139px}.table-scroll{overflow:auto;border-radius:11px;border:1px solid var(--line);background:#fff}.data-table{border-collapse:collapse;width:100%;min-width:850px;text-align:left}.data-table thead{background:#f7f9fa}.data-table th{font-size:9px;letter-spacing:.5px;color:#8d99a5;font-weight:800;padding:15px 15px;border-bottom:1px solid var(--line);white-space:nowrap}.data-table td{padding:16px 15px;font-size:11px;vertical-align:middle;border-bottom:1px solid #f0f2f4;color:#63707e}.data-table tr:last-child td{border-bottom:0}.data-table tr:hover td{background:#fffcfa}.data-table td strong{color:#1a2938;font-size:11px}.data-table td small{display:block;color:#a3aeb8;font-size:9px;margin-top:5px}.date-col{white-space:nowrap;font-weight:700}.detail-link{border:1px solid #ffdbcf;background:#fff8f4;border-radius:6px;padding:7px 8px;color:#e77955;font-size:10px;font-weight:800;white-space:nowrap}.pagination{display:flex;align-items:center;justify-content:center;gap:9px;margin:20px 0}.pagination button{border:1px solid #e2e6ec;background:#fff;padding:8px 12px;border-radius:7px;color:#607082;font-size:11px}.pagination button:disabled{opacity:.35;cursor:not-allowed}.pagination span{font-size:11px;color:#778593}.scan-status{background:#fff;border:1px solid #e8ebef;border-radius:12px;padding:19px 22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-bottom:15px}.scan-kpi small{display:block;color:#abb5bf;font-size:9px;letter-spacing:1px;font-weight:800;margin-bottom:10px}.scan-kpi strong{font-size:14px;font-weight:800}.scan-kpi .ok{color:#1c9d78}.scan-kpi .warn{color:#d8954e}.subtle-card{background:#fff5eb;border:1px solid #ffead7;border-radius:11px;padding:16px 19px;margin-bottom:19px}.subtle-card strong{display:block;font-size:12px;color:#c47b4a}.subtle-card p{font-size:11px;color:#aa8971;line-height:1.7;margin:5px 0 0}.queue-tools{display:flex;gap:10px;margin-bottom:15px}.queue-list{display:grid;gap:10px}.queue-card{display:flex;justify-content:space-between;gap:20px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:11px}.queue-card h3{font-size:13px;margin:8px 0 8px;line-height:1.55}.queue-card p{font-size:10px;color:#98a4af;margin:0}.queue-card a{white-space:nowrap;align-self:center;color:#f17957;font-weight:800;font-size:11px}.queue-top{display:flex;align-items:center;gap:9px;font-size:9px;color:#adb6c0}.empty-state{text-align:center;background:#fff;border:1px dashed #dfe5ea;border-radius:12px;padding:60px 18px;color:#98a4af;font-size:11px;line-height:1.9}.empty-state strong{display:block;color:#566677;font-size:14px;margin-bottom:6px}.empty-state .empty-icon{display:block;font-size:32px;margin-bottom:12px}.method-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.method-panel{padding:26px}.method-panel h3{margin:9px 0 15px}.method-panel p{color:#7f8c98;font-size:11px;line-height:1.9}.method-footer{background:#fff;border:1px solid var(--line);border-radius:9px;padding:17px;color:#8896a3;font-size:10px;margin-top:18px}.method-footer span{margin:0 10px;color:#c9d0d5}.method-footer strong{color:#536373}.modal-root[hidden]{display:none}.modal-root{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px}.modal-scrim{position:absolute;inset:0;background:#12202cd9}.detail-modal{width:min(650px,100%);max-height:min(85vh,750px);overflow:auto;position:relative;background:#fff;border-radius:17px;padding:30px 34px;box-shadow:0 25px 90px #1124384d}.modal-close{position:absolute;right:18px;top:15px;border:0;background:#f4f6f8;border-radius:7px;width:31px;height:31px;font-size:22px;color:#8e9ca8}.modal-eyebrow{color:var(--orange);font-weight:800;font-size:10px;letter-spacing:1.5px}.modal-title{font-size:25px;line-height:1.35;margin:14px 36px 9px 0}.modal-sub{font-size:12px;color:#8f9ca5;margin-bottom:22px}.modal-desc{font-size:12px;line-height:1.85;color:#657382;margin:15px 0 25px}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:22px 0}.detail-field{background:#f8fafb;border-radius:8px;padding:12px 13px}.detail-field small{display:block;color:#a3adb5;font-size:9px;letter-spacing:.45px;margin-bottom:8px}.detail-field strong{font-size:11px;color:#344557;line-height:1.6;overflow-wrap:anywhere}.source-button{display:inline-block;background:#1b3042;color:white;font-weight:800;font-size:11px;padding:11px 15px;border-radius:7px}.source-button.disabled{background:#c9cfd4;pointer-events:none}.modal-basis{color:#a0abb5;font-size:10px;line-height:1.8;margin-top:20px;overflow-wrap:anywhere}
+@media(min-width:1600px){main{padding-left:55px;padding-right:55px}}@media(max-width:1180px){.sidebar{width:216px;flex-basis:216px}.workarea{margin-left:216px}.topbar{padding:0 27px}main{padding:29px 27px}.footer{padding:0 27px}.hero-stamp{display:none}.hero-pattern span{right:3%}.recent-grid{gap:10px}}@media(max-width:880px){.sidebar{transform:translateX(-101%);transition:transform .2s;width:260px;box-shadow:10px 0 50px #0f20352e}.sidebar.open{transform:none}.workarea{margin-left:0}.menu-toggle{display:block;border:0;background:transparent;font-size:21px;color:#435162;margin-right:12px}.topbar{justify-content:flex-start;height:62px}.top-actions{margin-left:auto}.page-head h1{font-size:27px}.metric-grid{grid-template-columns:repeat(2,1fr)}.overview-grid{grid-template-columns:1fr}.recent-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:580px){main{padding:24px 17px 36px}.topbar{padding:0 17px}.breadcrumb{font-size:9px}.top-badge{font-size:8px}.today-label,.top-divider{display:none}.page-head{display:block}.asof{display:inline-block;margin-top:14px}.hero{height:275px;padding:24px}.hero h2{font-size:27px}.hero-pattern span{font-size:112px;right:-28px;top:30%}.metric-grid{gap:9px}.metric{min-height:130px;padding:14px}.metric-label{font-size:8px}.metric-line strong{font-size:27px}.section-meta{align-items:flex-start;gap:10px}.section-meta h3{font-size:13px}.section-meta small{display:block;margin:5px 0 0}.section-meta>span{font-size:8px}.panel{padding:18px}.bar-row{grid-template-columns:83px 1fr 20px;gap:9px}.recent-grid{grid-template-columns:1fr}.food-art{height:118px}.recent-title{min-height:0}.footer{padding:12px 17px;height:auto;display:block;line-height:2}.method-grid{grid-template-columns:1fr}.scan-status{grid-template-columns:1fr}.scan-kpi{border-bottom:1px solid #f1f3f5;padding-bottom:12px}.scan-kpi:last-child{border:none}.queue-card{display:block}.queue-card a{display:block;margin-top:17px}.queue-tools{flex-direction:column}.queue-tools select{min-height:40px}.select-filters select{flex:1;min-width:calc(50% - 5px)}.detail-modal{padding:28px 21px}.detail-grid{grid-template-columns:1fr}}
+/* Data-focused finishing touches */
+.food-art-emoji{font-size:51px;position:relative;z-index:1;filter:drop-shadow(0 8px 6px #75552d22)}
+.food-art-flag{position:absolute;right:14px;top:13px;z-index:2;background:#fff;box-shadow:0 2px 10px #172d3722;border-radius:7px;padding:5px 7px;font-size:16px}
+.recent-content{padding:17px 16px 15px}.load-error{margin:20px 0;border:1px solid #f1c5a8;background:#fff4ed;border-radius:10px;padding:22px;font-size:13px;color:#ac5b38}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focus-visible{outline:3px solid #ffac8a;outline-offset:2px}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="홈">
+        <span class="brand-glyph"><span>✳</span></span>
+        <span><strong>K-FOOD <em>RADAR</em></strong><small>GLOBAL QSR INTELLIGENCE</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="메뉴">
+        <a class="nav-item active" href="#dashboard" data-view="dashboard"><span class="nav-icon">◫</span> 인사이트 대시보드</a>
+        <a class="nav-item" href="#launches" data-view="launches"><span class="nav-icon">▦</span> 글로벌 출시 이력 <span id="side-count" class="side-count">65</span></a>
+        <a class="nav-item" href="#updates" data-view="updates"><span class="nav-icon">⌁</span> 주간 신규 모니터링 <span class="new-dot" aria-hidden="true"></span></a>
+        <a class="nav-item" href="#method" data-view="method"><span class="nav-icon">◉</span> 조사 기준 · 데이터 안내</a>
+      </nav>
+      <div class="side-label spaced">QUICK FILTERS</div>
+      <button class="side-filter" data-preset="고추장">🌶️ <span>GOCHUJANG</span> <span>›</span></button>
+      <button class="side-filter" data-preset="김치">🥬 <span>KIMCHI</span> <span>›</span></button>
+      <button class="side-filter" data-preset="K-BBQ">🍖 <span>K-BBQ</span> <span>›</span></button>
+      <div class="side-bottom">
+        <div class="cadence"><span class="live-bullet"></span> WEEKLY MONITORING <small>매주 월요일 · KST 기준</small></div>
+        <p>소스별 출시 사실은 별도 검증이 필요합니다.</p>
+      </div>
+    </aside>
+
+    <div class="workarea">
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기">☰</button>
+        <div class="breadcrumb">MARKET INTELLIGENCE <span>／</span> <strong>GLOBAL QSR</strong></div>
+        <div class="top-actions">
+          <span class="today-label" id="today-label"></span>
+          <span class="top-divider"></span>
+          <span class="top-badge"><span class="live-bullet"></span> WEEKLY SCAN · 미실행</span>
+        </div>
+      </header>
+
+      <main id="app">
+        <section id="view-dashboard" class="view active">
+          <div class="page-head"><div><div class="eyebrow">KOREAN FLAVORS, GLOBAL MARKETS</div><h1>Global QSR <span>K-Food Radar.</span></h1><p>전 세계 QSR 브랜드의 K-Food 신메뉴 출시 동향과 메뉴 적용 인사이트를 한눈에.</p></div><div class="asof" id="asof-label">HISTORY · AS OF 2026.11.23</div></div>
+          <section class="hero">
+            <div class="hero-pattern" aria-hidden="true"><span>✳</span><span>✳</span><span>✳</span></div>
+            <div class="hero-copy"><span class="hero-chip"><span class="hero-pulse"></span> WEEKLY INTELLIGENCE REPORT</span><h2>What's cooking<br><em>around the world?</em></h2><p>K-Flavor가 글로벌 QSR 메뉴에 적용되는 방식,<br>지금 가장 주목할 신제품을 살펴보세요.</p><button id="hero-explore" class="hero-btn">출시 이력 탐색하기 <span>↗</span></button></div>
+            <div class="hero-stamp"><small>FOCUSING ON</small><strong>GOCHUJANG<br>KIMCHI<br>K-BBQ</strong><span>GLOBAL · 2026</span></div>
+          </section>
+          <div class="section-meta"><h3>2026 Performance <small>기존 조사 이력 기준 · 중복 캠페인 포함</small></h3><span id="updated-tag">DATA REVIEWED · 2026.11.23</span></div>
+          <div class="metric-grid">
+            <article class="metric"><span class="metric-icon coral">◈</span><span class="metric-label">TRACKED MENU ITEMS</span><div class="metric-line"><strong id="stat-total">—</strong><span class="metric-unit">ITEMS</span></div><div class="metric-foot">메뉴·상품별 기록 수</div></article>
+            <article class="metric"><span class="metric-icon sky">◎</span><span class="metric-label">MARKETS COVERED</span><div class="metric-line"><strong id="stat-countries">—</strong><span class="metric-unit">COUNTRIES</span></div><div class="metric-foot">국가별 출시 동향</div></article>
+            <article class="metric"><span class="metric-icon violet">▣</span><span class="metric-label">QSR BRANDS</span><div class="metric-line"><strong id="stat-brands">—</strong><span class="metric-unit">BRANDS</span></div><div class="metric-foot">글로벌 브랜드 분석</div></article>
+            <article class="metric"><span class="metric-icon mint">↗</span><span class="metric-label">WEEKLY DISCOVERIES</span><div class="metric-line"><strong id="stat-candidates">—</strong><span class="metric-unit">LEADS</span></div><div class="metric-foot">미검증 신규 기사 후보</div></article>
+          </div>
+          <div class="overview-grid">
+            <article class="panel"><div class="panel-head"><div><small>FLAVOR LANDSCAPE</small><h3>Flavor별 출시 현황</h3></div><span class="panel-note">원본 Flavor 표기 기준</span></div><div id="flavor-bars" class="bar-chart"></div></article>
+            <article class="panel"><div class="panel-head"><div><small>MARKET COVERAGE</small><h3>주요 진출 국가</h3></div><span class="panel-note">Top 7</span></div><div id="country-list" class="country-list"></div></article>
+          </div>
+          <div class="section-meta latest-head"><h3>Recent Launches <small>원본 조사자료 중 최신 상품</small></h3><button class="text-link" id="more-launches">전체 출시 이력 보기 <span>↗</span></button></div>
+          <div id="recent-grid" class="recent-grid"></div>
+          <div class="notice"><span>ⓘ</span><p>출시 이력은 기존 엑셀 조사자료에 기반합니다. 자동 수집되는 뉴스는 <strong>‘검토 대기’</strong>로 별도 표시하며 검증 전 출시 확정 통계에 포함하지 않습니다.</p></div>
+        </section>
+
+        <section id="view-launches" class="view">
+          <div class="page-head compact"><div><div class="eyebrow">GLOBAL PRODUCT LAUNCH DATABASE</div><h1>글로벌 <span>출시 이력.</span></h1><p>국가·브랜드·Flavor·품목으로 탐색하고 메뉴 특징 및 출처를 확인하세요.</p></div><button class="export-btn" id="export-csv">⬇ 필터 결과 CSV</button></div>
+          <div class="filters-box"><label class="search-field"><span>⌕</span><input id="search-input" type="search" placeholder="상품명, 메뉴 특징, Flavor 검색" autocomplete="off" /></label><div class="select-filters"><select id="country-filter" aria-label="국가 선택"><option value="">전체 국가</option></select><select id="brand-filter" aria-label="브랜드 선택"><option value="">전체 브랜드</option></select><select id="flavor-filter" aria-label="Flavor 선택"><option value="">전체 Flavor</option></select><select id="type-filter" aria-label="판매 형태 선택"><option value="">전체 판매 형태</option></select><button class="reset-btn" id="reset-filters">초기화 ↻</button></div></div>
+          <div class="results-head"><div><strong id="results-count">0</strong>개 상품 기록 <small>· 개별 SKU/메뉴 기준</small></div><label>정렬 <select id="sort-filter"><option value="newest">출시일 최신순</option><option value="oldest">출시일 오래된 순</option><option value="brand">브랜드명 순</option></select></label></div>
+          <div class="table-scroll"><table class="data-table"><thead><tr><th>출시일</th><th>국가 / 브랜드</th><th>상품명 / 품목</th><th>FLAVOR</th><th>출시 / 판매 유형</th><th>가격</th><th>상세</th></tr></thead><tbody id="launch-tbody"></tbody></table></div>
+          <div id="table-pagination" class="pagination"></div>
+        </section>
+
+        <section id="view-updates" class="view">
+          <div class="page-head compact"><div><div class="eyebrow">WEEKLY DISCOVERY QUEUE</div><h1>주간 <span>신규 모니터링.</span></h1><p>매주 자동 검색으로 수집된 QSR × K-Flavor 관련 뉴스 후보입니다.</p></div><span class="asof" id="weekly-date">NEXT · MONDAY</span></div>
+          <div id="scan-status" class="scan-status"></div>
+          <div class="subtle-card"><strong>검토 대기 기사 (출시 확정 아님)</strong><p>기사 제목·뉴스 링크·발행일만 수집합니다. 상품명, 실제 출시일, 메뉴 구성, 가격은 공식 출처 확인 후 별도로 확정하세요.</p></div>
+          <div class="queue-tools"><label class="search-field"><span>⌕</span><input id="candidate-search" placeholder="기사 제목·브랜드 검색" /></label><select id="candidate-brand"><option value="">모든 브랜드</option></select></div>
+          <div class="queue-list" id="candidate-list"></div>
+        </section>
+
+        <section id="view-method" class="view">
+          <div class="page-head compact"><div><div class="eyebrow">METHODOLOGY & UPDATE POLICY</div><h1>데이터 <span>운영 기준.</span></h1><p>기존 엑셀 출시 이력과 자동 수집 뉴스 후보를 명확히 구분합니다.</p></div></div>
+          <div class="method-grid"><article class="panel method-panel"><small>01 — RESEARCH HISTORY</small><h3>기존 조사 이력</h3><p>2026년 엑셀의 출시일, 국가, 브랜드, 품목, 상품명, Flavor, 특징, 유형, 판매 형태, 원문 URL, 판매가, 모니터링일 및 근거를 기록합니다.</p><p>원본은 기존 조사자료이며 모든 행이 독립 출시 캠페인을 의미하지 않습니다. 원본의 불확실성은 보존합니다.</p></article><article class="panel method-panel"><small>02 — AUTOMATED DISCOVERY</small><h3>매주 검색 후보 수집</h3><p>GitHub Actions가 월요일 09:17 KST 무렵 Google News RSS을 검색합니다. 새로 발견된 기사 URL·제목·게시일만 업데이트합니다.</p><p>뉴스 검색 API 오류 또는 비활성화 때에는 데이터 갱신이 중단될 수 있으며, 마지막 성공일을 따로 표시합니다.</p></article><article class="panel method-panel"><small>03 — HUMAN REVIEW</small><h3>출시 사실 검증</h3><p>실제 출시일, 국가, 메뉴 특징, LTO 여부, 가격은 브랜드 공식 웹사이트 또는 신뢰할 수 있는 보도로 교차 확인한 뒤 이력 데이터에 입력합니다.</p><p>원문 이미지의 재배포·저작권 검토가 없는 경우 임의 제품 이미지를 사용하지 않습니다.</p></article><article class="panel method-panel"><small>04 — SOURCE & RESPONSIBILITY</small><h3>링크 및 품질 관리</h3><p>데이터는 참고용 시장 인텔리전스이며 메뉴 판매/종료 여부, 판매가격의 실시간 정확성을 보장하지 않습니다.</p><p>RSS·뉴스 색인 출처의 이용 약관 및 내부 정보 보안 정책을 검토한 후 공개 배포 여부를 결정하세요.</p></article></div>
+          <div class="method-footer">기존 데이터 기준일 <strong>2026.11.23</strong> <span>·</span> 자동 검색은 후보 수집 <strong>ONLY</strong> <span>·</span> 프로젝트별 비공개 저장소 권장</div>
+        </section>
+      </main>
+      <footer class="footer"><span>© 2026 K-FOOD RADAR <span class="footer-sep">/</span> Global QSR Market Intelligence</span><span>Built for menu innovation · Source-linked research</span></footer>
+    </div>
+  </div>
+  <div id="modal-root" class="modal-root" hidden><div class="modal-scrim" id="modal-scrim"></div><div class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="닫기">×</button><div id="modal-body"></div></div></div>
+  <script>
+const __launches = {
+  "source": "2026_Global_QSR_KFood_Launch_Tracker.xlsx",
+  "sourceAsOf": "2026-11-23",
+  "note": "원본 엑셀 기반 조사자료; 모든 개별 출시일 및 가격의 재검증 완료를 의미하지 않음. 동일 캠페인의 제품별 행 수를 포함.",
+  "records": [
+    {
+      "date": "2026-01",
+      "country": "필리핀",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨 스낵",
+      "product": "KBBQ Flavor Shots",
+      "flavor": "K-BBQ",
+      "characteristics": "한입 크기의 크리스피 치킨에 스모키·스위트한 한국식 BBQ 시즈닝 코팅",
+      "launchType": "기존 치킨의 시즈닝 응용",
+      "salesType": "LTO",
+      "url": "https://tribune.net.ph/2026/01/08/kfc-launches-kbbq-fest-with-korean-inspired-chicken-flavors",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "2026-01-05 브랜드 홍보 영상 공개. 정확한 판매 시작일 미확인",
+      "sourceType": "현지 보도",
+      "id": "xls-001",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01",
+      "country": "필리핀",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨 스낵/딥",
+      "product": "Shots with KBBQ Dip",
+      "flavor": "K-BBQ",
+      "characteristics": "크리스피 치킨과 한국식 BBQ 딥핑 소스 제공; 시즈닝형과 딥핑형 동시 전개",
+      "launchType": "기존 치킨 + 신규 소스",
+      "salesType": "LTO",
+      "url": "https://tribune.net.ph/2026/01/08/kfc-launches-kbbq-fest-with-korean-inspired-chicken-flavors",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "2026년 1월 프로모션; 정확한 판매 시작일 미확인",
+      "sourceType": "현지 보도",
+      "id": "xls-002",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01-09",
+      "country": "미국",
+      "brand": "Shake Shack",
+      "image": "",
+      "category": "치킨 바이트",
+      "product": "K-Shack Fried Chicken Bites",
+      "flavor": "고추장·참깨",
+      "characteristics": "화이트미트 치킨 바이트에 스위트·스파이시 참깨 고추장 글레이즈, 대파·딥핑소스",
+      "launchType": "신제품 출시",
+      "salesType": "LTO",
+      "url": "https://shakeshack.com/blog/our-food/the-korean-style-menu-is-back",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "앱 선출시 1/6, 매장 전국 출시 1/9",
+      "sourceType": "브랜드 공식",
+      "id": "xls-003",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01-09",
+      "country": "미국",
+      "brand": "Shake Shack",
+      "image": "",
+      "category": "쉐이크",
+      "product": "K-Shack Spicy Caramel Shake",
+      "flavor": "고추장·카라멜",
+      "characteristics": "고추장 캐러멜 프로즌 커스터드, 휘핑크림·고추장 캐러멜 드리즐",
+      "launchType": "신제품 출시",
+      "salesType": "LTO",
+      "url": "https://shakeshack.com/blog/our-food/the-korean-style-menu-is-back",
+      "price": "US$6.99 (보도 기준)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "앱 선출시 1/6, 매장 전국 출시 1/9",
+      "sourceType": "브랜드 공식/보도",
+      "id": "xls-004",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01-09",
+      "country": "미국",
+      "brand": "Shake Shack",
+      "image": "",
+      "category": "치킨 샌드위치",
+      "product": "K-Shack Fried Chicken Sandwich",
+      "flavor": "고추장·김치",
+      "characteristics": "치킨 필렛의 참깨 고추장 글레이즈 + 김치 슬로·대파",
+      "launchType": "기존 시즌 메뉴 재출시",
+      "salesType": "LTO",
+      "url": "https://shakeshack.com/blog/our-food/the-korean-style-menu-is-back",
+      "price": "US$10.49 (보도 기준)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "2026년 한국식 메뉴 3번째 운영",
+      "sourceType": "브랜드 공식/보도",
+      "id": "xls-005",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01-09",
+      "country": "미국",
+      "brand": "Shake Shack",
+      "image": "",
+      "category": "버거",
+      "product": "K-Shack BBQ Burger",
+      "flavor": "K-BBQ",
+      "characteristics": "앵거스 비프·치즈·크리스피 어니언·대파에 한국식 BBQ 소스",
+      "launchType": "기존 시즌 메뉴 재출시",
+      "salesType": "LTO",
+      "url": "https://shakeshack.com/blog/our-food/the-korean-style-menu-is-back",
+      "price": "US$10.49 (보도 기준)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "앱 선출시 1/6",
+      "sourceType": "브랜드 공식/보도",
+      "id": "xls-006",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-01-09",
+      "country": "미국",
+      "brand": "Shake Shack",
+      "image": "",
+      "category": "감자튀김",
+      "product": "K-Shack Spicy BBQ Fries",
+      "flavor": "김치 시즈닝·K-BBQ",
+      "characteristics": "크링클컷 감자튀김에 김치 시즈닝을 뿌리고 BBQ 소스를 별도 제공; 치즈 옵션",
+      "launchType": "기존 시즌 메뉴 재출시",
+      "salesType": "LTO",
+      "url": "https://shakeshack.com/blog/our-food/the-korean-style-menu-is-back",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "감자튀김: Seasoning-in-pack와 Dipping 응용 사례",
+      "sourceType": "브랜드 공식",
+      "id": "xls-007",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-03-03",
+      "country": "폴란드",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "피자·치킨·멜츠·딥",
+      "product": "Sunny K-Wave (시즌 컬렉션)",
+      "flavor": "김치·K-BBQ",
+      "characteristics": "서울 스트리트푸드 테마의 한국식 피자와 스위트·스파이시 치킨 윙/너겟·딥핑 소스",
+      "launchType": "K-Food 시즌 메뉴 도입",
+      "salesType": "LTO",
+      "url": "https://www.westfield.com/en/poland/arkadia/restaurants/offers/sunny-k-wave-at-pizza-hut/204630",
+      "price": "피자 PLN 39.99/49.99/59.99 (제공표 참고)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "프로모션 기간 3/3~9/22(일부 매장별 상이); 가격은 사용자 예시 표 기준 미재검증",
+      "sourceType": "쇼핑몰 공식 프로모션",
+      "id": "xls-008",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-03",
+      "country": "대만",
+      "brand": "Domino's Pizza",
+      "image": "",
+      "category": "피자",
+      "product": "WBC Quattro Pizza (Korean Kimchi Pork 섹션)",
+      "flavor": "김치·제육",
+      "characteristics": "WBC 4개국 테마 콰트로 피자 중 한국 대표 토핑으로 김치돼지고기 적용",
+      "launchType": "행사 연계 한정 신메뉴",
+      "salesType": "LTO",
+      "url": "https://www.mirrordaily.news/story/46950",
+      "price": "TWD 340 (포장 반값 행사)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "정확한 최초 판매일 미확인; WBC 시즌(3월) 보도",
+      "sourceType": "현지 보도",
+      "id": "xls-009",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-03",
+      "country": "프랑스",
+      "brand": "Subway",
+      "image": "",
+      "category": "샌드위치",
+      "product": "Korean Chicken",
+      "flavor": "고추장·스파이시 마요",
+      "characteristics": "고추장 스타일 마리네이드 치킨과 스파이시 마요로 K-드라마 테마 샌드위치",
+      "launchType": "신규 한정 식재 적용",
+      "salesType": "LTO",
+      "url": "https://resto.zepros.fr/snacking/sandwich-salade-boulangerie/subway-apporte-coree-france",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "3/24 기사로 확인; 판매 종료 5/26. 정확한 출시일 미확인",
+      "sourceType": "현지 외식전문지",
+      "id": "xls-010",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-03-26",
+      "country": "미국",
+      "brand": "Sweetgreen",
+      "image": "",
+      "category": "라이스 볼",
+      "product": "KBBQ Chicken Bowl",
+      "flavor": "K-BBQ·오이김치·사과김치",
+      "characteristics": "K-BBQ 글레이즈 치킨·밥·로메인·브로콜리·나파슬로·오이김치·애플 김치 소스",
+      "launchType": "신제품 출시",
+      "salesType": "LTO",
+      "url": "https://www.nasdaq.com/press-release/sweetgreen-continues-menu-innovation-new-kbbq-chicken-offering-2026-03-26",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "출시 발표일 3/26; 참여 매장 판매, 5/18까지",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-011",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-03-26",
+      "country": "미국",
+      "brand": "Sweetgreen",
+      "image": "",
+      "category": "라이스 플레이트",
+      "product": "KBBQ Chicken Plate",
+      "flavor": "K-BBQ·오이김치·사과김치",
+      "characteristics": "K-BBQ 글레이즈 치킨에 밥 더블, 오이김치·나파슬로·애플 김치 소스",
+      "launchType": "신제품 출시",
+      "salesType": "LTO",
+      "url": "https://www.nasdaq.com/press-release/sweetgreen-continues-menu-innovation-new-kbbq-chicken-offering-2026-03-26",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "출시 발표일 3/26; 참여 매장, 뉴욕·중서부 일부 지역 등 제외",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-012",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "채식 버거",
+      "product": "Korean Kimchi Veg Whopper",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "와퍼 플랫폼에 한국식 김치 매운맛 적용한 채식 옵션",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-013",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Korean Kimchi Chicken Whopper",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "와퍼 플랫폼에 김치풍미 소스를 더한 치킨 옵션",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-014",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "파니르 버거",
+      "product": "Korean Kimchi Paneer Burger",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "인도 현지 파니르 버거를 김치 매운맛과 결합",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-015",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "치즈 버거",
+      "product": "Korean Kimchi Cheese Burger",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "기존 치즈버거에 한국식 김치 매운맛 접목",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-016",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Korean Kimchi Chicken Burger",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "일반 치킨버거에 김치 매운맛 접목",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-017",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "치킨 윙",
+      "product": "Korean Spicy Chicken Wings",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "한국식 매운맛을 윙에 적용",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-018",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "치킨",
+      "product": "Korean Spicy Chicken",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "시그니처 치킨에 한국식 매운맛 응용",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-019",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-06",
+      "country": "인도",
+      "brand": "Burger King",
+      "image": "",
+      "category": "감자튀김",
+      "product": "Korean Spicy Fries",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "감자튀김에 한국식 매운 시즈닝 적용",
+      "launchType": "기존 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://creativebrandsmag.com/burger-king-india-turns-up-the-heat-with-korean-spicy-fest-season-2/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Korean Spicy Fest Season 2: Kimchi Fire, 4/6 공식 출시 발표; 현지 상세배합 미공개",
+      "sourceType": "브랜드 발표 인용 보도",
+      "id": "xls-020",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-15",
+      "country": "호주",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Dunked Korean Sticky BBQ McCrispy",
+      "flavor": "K-BBQ",
+      "characteristics": "크리스피 닭가슴살 필렛 전체를 스티키 Korean BBQ 소스에 덩크 코팅, 양상추·마요",
+      "launchType": "기존 메뉴에 신규 소스 풀코팅",
+      "salesType": "시즌 한정(종료일 미확인)",
+      "url": "https://www.mcdonalds.com/au/en-au/newsroom/article/dunked-korean-sticky-bbq-chicken.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 전국 출시일 4/15; 2025 일부 매장 시험판매 이후 확장",
+      "sourceType": "브랜드 공식",
+      "id": "xls-021",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-15",
+      "country": "호주",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "매운 치킨 버거",
+      "product": "Dunked Korean Sticky BBQ McSpicy",
+      "flavor": "K-BBQ",
+      "characteristics": "매콤한 크리스피 치킨 필렛 전체를 Korean Sticky BBQ 소스에 코팅",
+      "launchType": "기존 메뉴에 신규 소스 풀코팅",
+      "salesType": "시즌 한정(종료일 미확인)",
+      "url": "https://www.mcdonalds.com/au/en-au/newsroom/article/dunked-korean-sticky-bbq-chicken.html",
+      "price": "A$12.15 (현지 가격정보)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 전국 출시일 4/15; 가격은 현지 가격 매체 표기",
+      "sourceType": "브랜드 공식/현지 매체",
+      "id": "xls-022",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-04-15",
+      "country": "호주",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "디핑 소스",
+      "product": "Korean Sticky BBQ Sauce",
+      "flavor": "K-BBQ",
+      "characteristics": "McWings·McNuggets와 별도 제공되는 스위트·스파이시 디핑 소스",
+      "launchType": "기존 메뉴에 소스 추가",
+      "salesType": "시즌 한정(종료일 미확인)",
+      "url": "https://www.mcdonalds.com/au/en-au/newsroom/article/dunked-korean-sticky-bbq-chicken.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "버거 풀코팅과 디핑의 동일 소스 동시 활용",
+      "sourceType": "브랜드 공식",
+      "id": "xls-023",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-05",
+      "country": "필리핀",
+      "brand": "Subway",
+      "image": "",
+      "category": "샌드위치",
+      "product": "Chicken Bulgogi Sub",
+      "flavor": "불고기",
+      "characteristics": "스위트·세이보리 불고기 소스 글레이즈 치킨과 선택 야채를 조합한 샌드위치",
+      "launchType": "신메뉴 출시",
+      "salesType": "프로모션(기간 미확인)",
+      "url": "https://cookmagazine.ph/blog/2026/05/28/taste-the-korean-flavor-with-subways-korean-chicken-bulgogi-and-travel-giveaway/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "5/28 보도 확인; 정확한 판매 시작일 미기재",
+      "sourceType": "현지 매체",
+      "id": "xls-024",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-06",
+      "country": "뉴질랜드",
+      "brand": "Subway",
+      "image": "",
+      "category": "샌드위치",
+      "product": "Korean-Style BBQ Steak Sub",
+      "flavor": "K-BBQ",
+      "characteristics": "다이스드 스테이크에 사과·토마토·간장·캡시컴·고추 기반 스파이시 Korean BBQ 소스",
+      "launchType": "기존 스테이크 플랫폼 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://www.youtube.com/watch?v=ycd2KcNauFM",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "브랜드 NZ 홍보 영상 6/2 공개; 정확한 판매 시작일 미확인",
+      "sourceType": "브랜드 공식 영상",
+      "id": "xls-025",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-06-04",
+      "country": "미국",
+      "brand": "Just Salad",
+      "image": "",
+      "category": "라이스 플레이트",
+      "product": "Gochujang Chicken Market Plate",
+      "flavor": "고추장·김치",
+      "characteristics": "바스마티 라이스·고추장 치킨·고구마·김치·브로콜리·크리스피 어니언·고추장 드레싱",
+      "launchType": "신제품 출시",
+      "salesType": "LTO",
+      "url": "https://www.globenewswire.com/news-release/2026/06/04/3306782/0/en/trending-international-flavor-gochujang-leads-just-salad-s-summer-2026-seasonal-menu.html",
+      "price": "US$12.99부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "전국 여름 시즌 메뉴 6/4 출시",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-026",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-02",
+      "country": "폴란드",
+      "brand": "Domino's Pizza",
+      "image": "",
+      "category": "피자",
+      "product": "Pizza Korean Chicken BBQ",
+      "flavor": "K-BBQ",
+      "characteristics": "K-BBQ 소스·크리스피 치킨 스트립·모짜렐라·양파·파·흑백 참깨",
+      "launchType": "Asian Range 신규 메뉴",
+      "salesType": "LTO",
+      "url": "https://www.dominospizza.pl/blog/asian-range-sprobuj-nowosci-inspirowanych-azja",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "브랜드 공식 게시일 7/2; 정확한 매장 출시일 미기재",
+      "sourceType": "브랜드 공식",
+      "id": "xls-027",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-02",
+      "country": "폴란드",
+      "brand": "Domino's Pizza",
+      "image": "",
+      "category": "치킨 사이드",
+      "product": "Chicken Strips Korean BBQ",
+      "flavor": "K-BBQ",
+      "characteristics": "치킨 스트립을 진한 Korean BBQ 소스로 코팅하고 참깨 풍미를 부여",
+      "launchType": "기존 치킨 사이드 + 신규 소스",
+      "salesType": "LTO",
+      "url": "https://www.dominospizza.pl/blog/asian-range-sprobuj-nowosci-inspirowanych-azja",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "브랜드 공식 게시일 7/2; 정확한 매장 출시일 미기재",
+      "sourceType": "브랜드 공식",
+      "id": "xls-028",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-09",
+      "country": "한국",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "버거",
+      "product": "충주 찰옥수수 치즈 크로켓 버거",
+      "flavor": "한국산 찰옥수수·콘치즈",
+      "characteristics": "충주산 찰옥수수 치즈 크로켓을 패티와 결합한 Taste of Korea 메뉴",
+      "launchType": "국산 지역식재 활용 신메뉴",
+      "salesType": "LTO",
+      "url": "https://www.nongmin.com/article/20260708500346",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "한국 내 출시; 해외 K-Food 응용 참고용",
+      "sourceType": "국내 보도",
+      "id": "xls-029",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-09",
+      "country": "한국",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "브렉퍼스트/머핀",
+      "product": "충주 찰옥수수 치즈 크로켓 머핀",
+      "flavor": "한국산 찰옥수수·콘치즈",
+      "characteristics": "한국산 찰옥수수 치즈 크로켓의 맥모닝 응용",
+      "launchType": "국산 지역식재 활용 신메뉴",
+      "salesType": "LTO",
+      "url": "https://www.nongmin.com/article/20260708500346",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "한국 내 출시; 해외 K-Food 응용 참고용",
+      "sourceType": "국내 보도",
+      "id": "xls-030",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-22",
+      "country": "미국",
+      "brand": "Habit Burger & Grill",
+      "image": "",
+      "category": "치킨 바이트",
+      "product": "Korean Fried Chicken Bites",
+      "flavor": "K-Spicy·Sweet Heat",
+      "characteristics": "더블 브레디드 치킨을 스위트·스파이시 글레이즈 코팅, 에브리싱 베이글 시즈닝·버터밀크 랜치",
+      "launchType": "셰프 협업 신제품",
+      "salesType": "LTO",
+      "url": "https://www.globenewswire.com/news-release/2026/07/21/3330711/0/en/habit-launches-new-chef-in-residency-platform-with-celebrity-chef-jet-tila.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "7/22~9/15, Jet Tila Korean Street Menu",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-031",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-22",
+      "country": "미국",
+      "brand": "Habit Burger & Grill",
+      "image": "",
+      "category": "샐러드",
+      "product": "Crispy Rice Korean Salad",
+      "flavor": "K-Spicy·Sweet Heat",
+      "characteristics": "그릴드 치킨·쌀 크리스피·채소·에브리싱 베이글 시즈닝·스위트 스파이시 드레싱",
+      "launchType": "셰프 협업 신제품",
+      "salesType": "LTO",
+      "url": "https://www.globenewswire.com/news-release/2026/07/21/3330711/0/en/habit-launches-new-chef-in-residency-platform-with-celebrity-chef-jet-tila.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "7/22~9/15",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-032",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-22",
+      "country": "미국",
+      "brand": "Habit Burger & Grill",
+      "image": "",
+      "category": "비프 버거",
+      "product": "Sweet & Spicy Korean Char with Bacon and Onion Tanglers",
+      "flavor": "K-Spicy·Sweet Heat",
+      "characteristics": "그릴드 비프·베이컨·크리스피 어니언·갈릭 아이올리·스위트 스파이시 소스",
+      "launchType": "셰프 협업 신제품",
+      "salesType": "LTO",
+      "url": "https://www.globenewswire.com/news-release/2026/07/21/3330711/0/en/habit-launches-new-chef-in-residency-platform-with-celebrity-chef-jet-tila.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "7/22~9/15",
+      "sourceType": "브랜드 보도자료",
+      "id": "xls-033",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-29",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "비프 버거",
+      "product": "Korea Garlic Beef Burger",
+      "flavor": "한국식 마늘",
+      "characteristics": "한국 창녕마늘버거에서 착안한 한국식 갈릭 비프 버거 현지화",
+      "launchType": "국내 메뉴 해외 현지화",
+      "salesType": "기간 미확인",
+      "url": "https://en.yna.co.kr/view/AEN20260802002200320",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "연합뉴스 8/2 기사 속 전주 수요일(7/29) 출시",
+      "sourceType": "언론 보도",
+      "id": "xls-034",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-07-29",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Korea Garlic Chicken Burger",
+      "flavor": "한국식 마늘",
+      "characteristics": "한국 창녕마늘버거 레시피를 치킨 플랫폼으로 변형·현지화",
+      "launchType": "국내 메뉴 해외 현지화",
+      "salesType": "기간 미확인",
+      "url": "https://en.yna.co.kr/view/AEN20260802002200320",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "연합뉴스 8/2 기사 속 전주 수요일(7/29) 출시",
+      "sourceType": "언론 보도",
+      "id": "xls-035",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-08-27",
+      "country": "싱가포르",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "치킨 피자",
+      "product": "Cheesy 7 Soy Garlic Chicken Pizza",
+      "flavor": "소이갈릭",
+      "characteristics": "스위트·세이보리 간장베이스·마늘·치킨 청크 + 7종 치즈",
+      "launchType": "기존 Cheesy 7 K-Flavor 변형",
+      "salesType": "LTO",
+      "url": "https://qsrmedia.asia/marketing/news/pizza-hut-singapores-cheesy-7-gets-bold-korean-makeover",
+      "price": "S$13.95(레귤러) / S$19.95(라지)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "판매 8/27~11/11; 표시 가격은 8/27~9/16 프로모션",
+      "sourceType": "QSR 전문매체",
+      "id": "xls-036",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-01",
+      "country": "폴란드",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "피자",
+      "product": "Pizza K-Pop",
+      "flavor": "고추장·갈릭",
+      "characteristics": "고추장 갈릭 소스의 스위트·스파이시 누들·베이컨·참깨·핑크 딥 K-Pink",
+      "launchType": "Korean Pizzas 신규 라인업",
+      "salesType": "LTO",
+      "url": "https://galeriaecho.pl/promocje-i-oferty-specjalne/pizza-hut-korean-pizzas-nowe-smaki/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Kielce Galeria Echo 매장 프로모션 9/1~11/2; 전국 출시로 일반화 금지",
+      "sourceType": "매장·쇼핑몰 공식",
+      "id": "xls-037",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-01",
+      "country": "폴란드",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "피자",
+      "product": "Pizza K-Soul",
+      "flavor": "K-Spicy",
+      "characteristics": "치킨 너겟·스위트 스파이시 소스·파프리카·옥수수·파·참깨",
+      "launchType": "Korean Pizzas 신규 라인업",
+      "salesType": "LTO",
+      "url": "https://galeriaecho.pl/promocje-i-oferty-specjalne/pizza-hut-korean-pizzas-nowe-smaki/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Kielce Galeria Echo 매장 프로모션 9/1~11/2; 전국 출시로 일반화 금지",
+      "sourceType": "매장·쇼핑몰 공식",
+      "id": "xls-038",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-01",
+      "country": "폴란드",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "피자",
+      "product": "Pizza K-Vibe",
+      "flavor": "김치",
+      "characteristics": "김치·절임 생강·모짜렐라·크리미 소스의 베지 피자",
+      "launchType": "Korean Pizzas 신규 라인업",
+      "salesType": "LTO",
+      "url": "https://galeriaecho.pl/promocje-i-oferty-specjalne/pizza-hut-korean-pizzas-nowe-smaki/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Kielce Galeria Echo 매장 프로모션 9/1~11/2; 전국 출시로 일반화 금지",
+      "sourceType": "매장·쇼핑몰 공식",
+      "id": "xls-039",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-01",
+      "country": "폴란드",
+      "brand": "Pizza Hut",
+      "image": "",
+      "category": "피자",
+      "product": "Pizza K-Street",
+      "flavor": "김치·K-Spicy",
+      "characteristics": "로스트 치킨·김치·레드어니언·그린페퍼·스위트 스파이시 소스·참깨",
+      "launchType": "Korean Pizzas 신규 라인업",
+      "salesType": "LTO",
+      "url": "https://galeriaecho.pl/promocje-i-oferty-specjalne/pizza-hut-korean-pizzas-nowe-smaki/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Kielce Galeria Echo 매장 프로모션 9/1~11/2; 전국 출시로 일반화 금지",
+      "sourceType": "매장·쇼핑몰 공식",
+      "id": "xls-040",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "한국",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "McCrispy Gochujang Butter",
+      "flavor": "고추장 버터",
+      "characteristics": "치킨 통다리살 케이준 패티·고추장 버터 소스·콜비잭 치즈",
+      "launchType": "신규 소스 버거",
+      "salesType": "캠페인 한정",
+      "url": "https://www.mcdonalds.co.kr/kor/press/detail/652/3",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "한국 주도 Asia Chicken Campaign, 13개 아시아 시장 순차 적용",
+      "sourceType": "브랜드 공식",
+      "id": "xls-041",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "한국",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "매운 치킨 버거",
+      "product": "McSpicy Gochujang Butter",
+      "flavor": "고추장 버터",
+      "characteristics": "McSpicy 치킨 패티에 고추장 버터 소스 조합",
+      "launchType": "기존 메뉴 + 신규 소스",
+      "salesType": "캠페인 한정",
+      "url": "https://www.mcdonalds.co.kr/kor/press/detail/652/3",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "한국 주도 13개국 캠페인",
+      "sourceType": "브랜드 공식",
+      "id": "xls-042",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "한국",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "디핑 소스",
+      "product": "Gochujang Butter Sauce (Dip)",
+      "flavor": "고추장 버터",
+      "characteristics": "버거 적용 소스를 McNuggets 디핑으로 동시 전개",
+      "launchType": "신규 디핑 소스",
+      "salesType": "캠페인 한정",
+      "url": "https://www.mcdonalds.co.kr/kor/press/detail/652/3",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "소스 1종의 버거/디핑 투 트랙 전개",
+      "sourceType": "브랜드 공식",
+      "id": "xls-043",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "홍콩",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Gochujang Butter McCrispy",
+      "flavor": "고추장 버터",
+      "characteristics": "통닭다리 크리스피 패티·고추장 버터 소스·파인애플·로메인",
+      "launchType": "현지화 K-Flavor 버거",
+      "salesType": "LTO",
+      "url": "https://www.mcdonalds.com.hk/press-release/g-dragon/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 9/17 09:30 판매 개시; 파인애플 추가 현지화",
+      "sourceType": "브랜드 공식",
+      "id": "xls-044",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "홍콩",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "디핑 소스",
+      "product": "Gochujang Butter McNugget Sauce",
+      "flavor": "고추장 버터",
+      "characteristics": "고추장 버터 소스의 맥너겟 디핑 활용",
+      "launchType": "기존 메뉴 + 신규 디핑",
+      "salesType": "LTO",
+      "url": "https://www.mcdonalds.com.hk/press-release/g-dragon/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 9/17 판매 개시",
+      "sourceType": "브랜드 공식",
+      "id": "xls-045",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "홍콩",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "감자튀김",
+      "product": "Korean BBQ Shake Shake Fries",
+      "flavor": "불고기·K-BBQ 시즈닝",
+      "characteristics": "한국식 BBQ 시즈닝을 감자튀김에 혼합하는 Shake Shake 포맷",
+      "launchType": "기존 감자튀김 시즈닝 확장",
+      "salesType": "LTO",
+      "url": "https://www.mcdonalds.com.hk/press-release/g-dragon/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "허니버터 프라이즈 동시 출시, 별개 맛으로 관리",
+      "sourceType": "브랜드 공식",
+      "id": "xls-046",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "홍콩",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "탄산음료",
+      "product": "Jeju Tangerine Coconut Soda",
+      "flavor": "제주감귤",
+      "characteristics": "제주감귤 풍미·코코넛 젤리를 조합한 한국 테마 음료",
+      "launchType": "K-Ingredient 현지화 음료",
+      "salesType": "LTO",
+      "url": "https://www.mcdonalds.com.hk/press-release/g-dragon/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "제주 원산지 실물 사용 여부는 공식 문구만으로 판단 불가",
+      "sourceType": "브랜드 공식",
+      "id": "xls-047",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-17",
+      "country": "베트남",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "프라이드 치킨",
+      "product": "Gà xốt K-spicy (K-Spicy Chicken)",
+      "flavor": "고추장 버터",
+      "characteristics": "기존 베트남 크리스피 프라이드치킨에 Gochujang Butter Sauce를 적용, BBQ·Spicy 선택",
+      "launchType": "기존 치킨 플랫폼 K-Flavor 현지화",
+      "salesType": "캠페인 한정",
+      "url": "https://tieudung.giadinhonline.vn/mon-an-tu-ga-ra-phien-ban-moi-them-lua-chon-vi-cay-kieu-han-d13469.html",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "9/17 출시, 캠페인 10월 말까지",
+      "sourceType": "현지 보도",
+      "id": "xls-048",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-23",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Korean Spicy Sauce Chicken Burger (正宗韓式辣醬鷄腿堡)",
+      "flavor": "고추장 버터",
+      "characteristics": "치킨 통다리살·고추장 버터 소스·치즈·양상추·포테이토번",
+      "launchType": "K-Flavor 현지화 버거",
+      "salesType": "LTO",
+      "url": "https://www.businesstoday.com.tw/article/category/183030/post/202609170004/",
+      "price": "TWD 125 (단품)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "9/23~10/20(재고 소진까지)",
+      "sourceType": "현지 보도/브랜드 공지",
+      "id": "xls-049",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-23",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "비프 버거",
+      "product": "Korean Spicy Sauce Quarter Pounder (正宗韓式辣醬四盎司牛肉堡)",
+      "flavor": "고추장 버터",
+      "characteristics": "쿼터파운드 비프·고추장 버터 소스·치즈·양상추",
+      "launchType": "K-Flavor 현지화 버거",
+      "salesType": "LTO",
+      "url": "https://www.businesstoday.com.tw/article/category/183030/post/202609170004/",
+      "price": "TWD 125 (단품)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "9/23~10/20(재고 소진까지)",
+      "sourceType": "현지 보도/브랜드 공지",
+      "id": "xls-050",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-23",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "감자튀김",
+      "product": "Kimchi-flavored Shake Shake Fries (韓式泡菜風味搖搖薯條)",
+      "flavor": "김치 시즈닝",
+      "characteristics": "기존 감자튀김에 김치 향 시즈닝을 흔들어 혼합",
+      "launchType": "감자튀김 시즈닝 신제품",
+      "salesType": "LTO",
+      "url": "https://www.businesstoday.com.tw/article/category/183030/post/202609170004/",
+      "price": "TWD 69 (현지 보도)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "9/23~10/20",
+      "sourceType": "현지 보도",
+      "id": "xls-051",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-09-23",
+      "country": "대만",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "탄산음료",
+      "product": "Korean Honey Yuzu Soda (韓式蜜柚氣泡飲)",
+      "flavor": "한국식 유자·꿀",
+      "characteristics": "한국 테마의 달콤한 유자풍미 탄산음료",
+      "launchType": "K-Flavor 음료 확장",
+      "salesType": "LTO",
+      "url": "https://www.businesstoday.com.tw/article/category/183030/post/202609170004/",
+      "price": "TWD 50 (현지 보도)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "9/23~10/20",
+      "sourceType": "현지 보도",
+      "id": "xls-052",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-01",
+      "country": "싱가포르",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Spicy Bulgogi Chicken Burger",
+      "flavor": "불고기·K-Spicy",
+      "characteristics": "크리스피 치킨 패티를 스위트·스파이시 불고기 소스로 글레이즈, 단일/더블 패티",
+      "launchType": "신규 불고기 소스 버거",
+      "salesType": "LTO",
+      "url": "https://cnalifestyle.channelnewsasia.com/dining/mcdonalds-singapore-g-dragon-collab-2026-589486",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "10/1 출시, K-pop 콜라보 캠페인",
+      "sourceType": "CNA 현지 보도",
+      "id": "xls-053",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-01",
+      "country": "싱가포르",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "비프 버거",
+      "product": "Bulgogi Beef Burger",
+      "flavor": "불고기",
+      "characteristics": "비프 패티에 스위트·스파이시 불고기 소스를 적용",
+      "launchType": "신규 불고기 소스 버거",
+      "salesType": "LTO",
+      "url": "https://cnalifestyle.channelnewsasia.com/dining/mcdonalds-singapore-g-dragon-collab-2026-589486",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "10/1 출시",
+      "sourceType": "CNA 현지 보도",
+      "id": "xls-054",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-09",
+      "country": "필리핀",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "매운 치킨 버거",
+      "product": "Yangnyeom McSpicy",
+      "flavor": "양념치킨",
+      "characteristics": "맥스파이시 치킨 버거에 한국식 양념풍미 소스를 적용",
+      "launchType": "기존 버거 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://context.ph/2026/10/12/mcdonalds-expands-korean-inspired-menu-as-hallyu-drives-demand/",
+      "price": "₱199 (앱 세트/프로모션)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "앱 프로모션 가격: 제품 단품 가격과 구분",
+      "sourceType": "현지 보도",
+      "id": "xls-055",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-09",
+      "country": "필리핀",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "비프 버거",
+      "product": "Yangnyeom Double Cheeseburger",
+      "flavor": "양념치킨 소스",
+      "characteristics": "더블 치즈버거 플랫폼에 한국식 양념 소스 적용",
+      "launchType": "기존 버거 K-Flavor 확장",
+      "salesType": "LTO",
+      "url": "https://context.ph/2026/10/12/mcdonalds-expands-korean-inspired-menu-as-hallyu-drives-demand/",
+      "price": "₱169 (앱 세트/프로모션)",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "앱 프로모션 가격: 제품 단품 가격과 구분",
+      "sourceType": "현지 보도",
+      "id": "xls-056",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-09",
+      "country": "필리핀",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "감자튀김",
+      "product": "Galbi McShaker Fries",
+      "flavor": "갈비 시즈닝",
+      "characteristics": "기존 감자튀김에 한국식 갈비풍미 파우더로 맛 변형",
+      "launchType": "시즈닝 신제품",
+      "salesType": "LTO",
+      "url": "https://context.ph/2026/10/12/mcdonalds-expands-korean-inspired-menu-as-hallyu-drives-demand/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Taste of Korea 캠페인",
+      "sourceType": "현지 보도",
+      "id": "xls-057",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-09",
+      "country": "필리핀",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "음료/플로트",
+      "product": "K-Melon Float",
+      "flavor": "K-Melon",
+      "characteristics": "한국식 멜론 풍미를 플로트 음료로 응용",
+      "launchType": "K-Flavor 음료 확장",
+      "salesType": "LTO",
+      "url": "https://context.ph/2026/10/12/mcdonalds-expands-korean-inspired-menu-as-hallyu-drives-demand/",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "Taste of Korea 캠페인",
+      "sourceType": "현지 보도",
+      "id": "xls-058",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-29",
+      "country": "말레이시아",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Spicy Gochujang McDeluxe",
+      "flavor": "고추장",
+      "characteristics": "기존 Spicy Chicken McDeluxe 통닭다리살 버거에 스파이시 고추장 소스 추가",
+      "launchType": "기존 버거에 신규 소스",
+      "salesType": "기간 미확인",
+      "url": "https://www.mcdonalds.com.my/promotion/the-new-spicy-gochujang-mcdeluxe",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 웹 게시일 10/29; 판매 시작일 별도 미기재",
+      "sourceType": "브랜드 공식",
+      "id": "xls-059",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-10-29",
+      "country": "말레이시아",
+      "brand": "McDonald's",
+      "image": "",
+      "category": "디핑 소스",
+      "product": "Gochujang Butter Sauce for McNuggets",
+      "flavor": "고추장 버터",
+      "characteristics": "맥너겟용 고추장 버터 디핑 소스 추가",
+      "launchType": "기존 메뉴 + 신규 딥핑",
+      "salesType": "기간 미확인",
+      "url": "https://www.mcdonalds.com.my/promotion/the-new-spicy-gochujang-mcdeluxe",
+      "price": "미확인",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "공식 웹 게시일 10/29; 판매 시작일 별도 미기재",
+      "sourceType": "브랜드 공식",
+      "id": "xls-060",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-11-10",
+      "country": "인도",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨 버거",
+      "product": "Korean Dunked Range — Zinger Burger",
+      "flavor": "고추장·참깨",
+      "characteristics": "기존 Zinger Burger의 크리스피 치킨에 고추장·참깨 기반 소스 코팅",
+      "launchType": "기존 메뉴에 신규 소스 덩크형식",
+      "salesType": "기간 미확인",
+      "url": "https://www.passionateinmarketing.com/kfc-india-goes-saucy-with-the-all-new-korean-dunked-range/",
+      "price": "제품군 ₹89부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "상세상품명은 공식 보도자료의 범주명에 설명용 접두어를 붙임; 1,400+ 매장",
+      "sourceType": "브랜드 보도자료 인용",
+      "id": "xls-061",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-11-10",
+      "country": "인도",
+      "brand": "KFC",
+      "image": "",
+      "category": "본리스 치킨",
+      "product": "Korean Dunked Range — Boneless Chicken Strips",
+      "flavor": "고추장·참깨",
+      "characteristics": "기존 본리스 스트립에 한국식 고추장·참깨 소스 적용",
+      "launchType": "기존 메뉴에 신규 소스 덩크형식",
+      "salesType": "기간 미확인",
+      "url": "https://www.passionateinmarketing.com/kfc-india-goes-saucy-with-the-all-new-korean-dunked-range/",
+      "price": "제품군 ₹89부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "상세상품명은 공식 보도자료의 범주명에 설명용 접두어를 붙임; 1,400+ 매장",
+      "sourceType": "브랜드 보도자료 인용",
+      "id": "xls-062",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-11-10",
+      "country": "인도",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨 윙",
+      "product": "Korean Dunked Range — Wings",
+      "flavor": "고추장·참깨",
+      "characteristics": "크리스피 윙을 코리안 스타일 스위트·스파이시 소스로 덩크",
+      "launchType": "기존 메뉴에 신규 소스 덩크형식",
+      "salesType": "기간 미확인",
+      "url": "https://www.passionateinmarketing.com/kfc-india-goes-saucy-with-the-all-new-korean-dunked-range/",
+      "price": "제품군 ₹89부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "상세상품명은 공식 보도자료의 범주명에 설명용 접두어를 붙임; 1,400+ 매장",
+      "sourceType": "브랜드 보도자료 인용",
+      "id": "xls-063",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-11-10",
+      "country": "인도",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨 레그",
+      "product": "Korean Dunked Range — Chicken Leg Pieces",
+      "flavor": "고추장·참깨",
+      "characteristics": "기존 치킨 레그 피스에 코리안 소스 적용",
+      "launchType": "기존 메뉴에 신규 소스 덩크형식",
+      "salesType": "기간 미확인",
+      "url": "https://www.passionateinmarketing.com/kfc-india-goes-saucy-with-the-all-new-korean-dunked-range/",
+      "price": "제품군 ₹89부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "상세상품명은 공식 보도자료의 범주명에 설명용 접두어를 붙임; 1,400+ 매장",
+      "sourceType": "브랜드 보도자료 인용",
+      "id": "xls-064",
+      "status": "기존 조사자료"
+    },
+    {
+      "date": "2026-11-10",
+      "country": "인도",
+      "brand": "KFC",
+      "image": "",
+      "category": "치킨",
+      "product": "Korean Dunked Range — Hot & Crispy",
+      "flavor": "고추장·참깨",
+      "characteristics": "핫앤크리스피 치킨에 코리안 소스를 접목",
+      "launchType": "기존 메뉴에 신규 소스 덩크형식",
+      "salesType": "기간 미확인",
+      "url": "https://www.passionateinmarketing.com/kfc-india-goes-saucy-with-the-all-new-korean-dunked-range/",
+      "price": "제품군 ₹89부터",
+      "monitoredAt": "2026-11-23",
+      "dateBasis": "상세상품명은 공식 보도자료의 범주명에 설명용 접두어를 붙임; 1,400+ 매장",
+      "sourceType": "브랜드 보도자료 인용",
+      "id": "xls-065",
+      "status": "기존 조사자료"
+    }
+  ]
+}
+;
+const __candidates = {
+  "source": "Google News RSS discovery / editorial review required",
+  "lastScanKst": null,
+  "status": "pending",
+  "newItems": 0,
+  "queriesSucceeded": 0,
+  "queriesFailed": 0,
+  "records": []
+}
+;
+const originalFetch = window.fetch.bind(window);
+window.fetch = (url, options) => String(url).includes("data/launches.json") ? Promise.resolve({ok:true,json:()=>Promise.resolve(__launches)}) : originalFetch(url, options);
+</script>
+<script>/* K-Food Radar — lightweight, dependency-free data dashboard. */
+(() => {
+  'use strict';
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const state = { launches: [], leads: [], meta: {}, candidateMeta: {}, page: 1, pageSize: 12, view: 'dashboard', matched: [] };
+  const countries = { '미국':'🇺🇸','한국':'🇰🇷','일본':'🇯🇵','중국':'🇨🇳','호주':'🇦🇺','싱가포르':'🇸🇬','말레이시아':'🇲🇾','필리핀':'🇵🇭','홍콩':'🇭🇰','대만':'🇹🇼','인도':'🇮🇳','태국':'🇹🇭','폴란드':'🇵🇱','영국':'🇬🇧','캐나다':'🇨🇦','인도네시아':'🇮🇩','베트남':'🇻🇳' };
+  const categoryEmoji = (c) => /피자|pizza/i.test(c) ? '🍕' : /버거|burger|샌드위치|sandwich/i.test(c) ? '🍔' : /치킨|윙|너겟|텐더|chicken|wing/i.test(c) ? '🍗' : /감자|프라이|사이드|fries/i.test(c) ? '🍟' : /쉐이크|디저트|shake|dessert/i.test(c) ? '🥤' : /파스타|noodle|면/i.test(c) ? '🍝' : '🍽️';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c)=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const safeUrl = (url) => { try { const u=new URL(String(url)); return /^https?:$/.test(u.protocol) ? u.href : ''; } catch {return '';} };
+  const dateText = (s) => { if(!s)return '미확인'; const d=String(s); return /^\d{4}-\d{2}/.test(d) ? d.replaceAll('-', '.') : d; };
+  const freq = (arr, key) => { const m = new Map(); arr.forEach((x) => {let v=(typeof key==='function'?key(x):x[key])||'기타';m.set(v,(m.get(v)||0)+1)});return [...m].sort((a,b)=>b[1]-a[1]); };
+  const topFlavor = (t) => {const s=String(t||'').toLowerCase(); if(/고추장|gochujang/.test(s))return '고추장';if(/김치|kimchi/.test(s))return '김치';if(/bulgogi|불고기|bbq|바비큐|갈비/.test(s))return 'K-BBQ'; if(/soy|간장/.test(s))return '간장·소이갈릭';if(/yangnyeom|양념/.test(s))return '양념치킨';return '기타 K-Flavor';};
+  const extractDate = x => String(x.date||'').padEnd(10,'-00');
+  const setText=(sel,s) => { const node=$(sel);if(node)node.textContent=s; };
+  function openView(view) {
+    if(!['dashboard','launches','updates','method'].includes(view))view='dashboard';
+    state.view = view;
+    $$('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+view));
+    $$('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.view===view));
+    $('#sidebar')?.classList.remove('open');
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  function navigate(view) { location.hash = '#'+view; openView(view); }
+  function fillSelect(sel, values) { const select=$(sel); values.forEach((v)=>{const opt=document.createElement('option');opt.value=v;opt.textContent=v;select.appendChild(opt);}); }
+  function renderDashboard() {
+    const items=state.launches;
+    setText('#stat-total', items.length);
+    setText('#stat-countries',new Set(items.map(x=>x.country)).size);
+    setText('#stat-brands',new Set(items.map(x=>x.brand)).size);
+    setText('#stat-candidates',state.leads.length);
+    setText('.top-badge',state.candidateMeta?.lastScanKst ? '● WEEKLY SCAN · 기록 있음' : '● WEEKLY SCAN · 미실행');
+    setText('#side-count',items.length);
+    setText('#asof-label',`HISTORY · AS OF ${dateText(state.meta.sourceAsOf||'2026-11-23')}`);
+    setText('#updated-tag',`DATA REVIEWED · ${dateText(state.meta.sourceAsOf||'2026-11-23')}`);
+    const flavors=freq(items,x=>topFlavor(x.flavor)); const highest=flavors[0]?.[1]||1;
+    $('#flavor-bars').innerHTML=flavors.map(([k,v])=>`<div class="bar-row"><span title="${esc(k)}">${esc(k)}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(v/highest*100)}%"></div></div><strong>${v}</strong></div>`).join('');
+    $('#country-list').innerHTML=freq(items,'country').slice(0,7).map(([k,v],i)=>`<div class="country-row"><span class="country-rank">${String(i+1).padStart(2,'0')}</span><span class="country-flag">${countries[k]||'🌐'}</span><span class="country-name">${esc(k)}</span><span class="country-count">${v}</span></div>`).join('');
+    const latest=[...items].sort((a,b)=>extractDate(b).localeCompare(extractDate(a))).slice(0,6);
+    $('#recent-grid').innerHTML=latest.map(x=>`<article class="recent-card" data-id="${esc(x.id)}" role="button" tabindex="0" aria-label="${esc(x.product)} 자세히 보기"><div class="food-art ${/치킨|윙|텐더/.test(x.category)?'art-chicken':''}"><span class="food-art-emoji">${categoryEmoji(x.category)}</span><span class="food-art-flag">${countries[x.country]||'🌐'}</span></div><div class="recent-content"><div class="recent-meta">${esc(x.brand)} <span>·</span> ${esc(x.country)} · ${dateText(x.date)}</div><div class="recent-title">${esc(x.product)}</div><div class="recent-desc">${esc(x.characteristics)}</div><div class="recent-bottom"><span class="pill">${esc(topFlavor(x.flavor))}</span><span class="mini-arrow">↗</span></div></div></article>`).join('');
+  }
+  function getFiltered() {
+    const q=$('#search-input').value.trim().toLowerCase();const country=$('#country-filter').value;const brand=$('#brand-filter').value;const flavor=$('#flavor-filter').value;const typ=$('#type-filter').value;
+    const matched=state.launches.filter(x=> (!country||x.country===country)&&(!brand||x.brand===brand)&&(!flavor||topFlavor(x.flavor)===flavor)&&(!typ||x.salesType===typ)&&(!q||[x.country,x.brand,x.product,x.category,x.flavor,x.characteristics,x.launchType,x.salesType].some(v=>String(v).toLowerCase().includes(q))));
+    const sort=$('#sort-filter').value; matched.sort((a,b)=>sort==='brand'?(a.brand.localeCompare(b.brand,'ko')||extractDate(b).localeCompare(extractDate(a))):sort==='oldest'?extractDate(a).localeCompare(extractDate(b)):extractDate(b).localeCompare(extractDate(a)));
+    return matched;
+  }
+  function renderLaunches(reset=false) {
+    if(reset)state.page=1;
+    state.matched=getFiltered();const a=state.matched;const pages=Math.max(1,Math.ceil(a.length/state.pageSize));state.page=Math.max(1,Math.min(state.page,pages));setText('#results-count',a.length);
+    const start=(state.page-1)*state.pageSize;const data=a.slice(start,start+state.pageSize);
+    $('#launch-tbody').innerHTML=data.length?data.map(x=>`<tr><td class="date-col">${dateText(x.date)}</td><td><strong>${esc(x.brand)}</strong><small>${countries[x.country]||'🌐'} ${esc(x.country)}</small></td><td><strong>${esc(x.product)}</strong><small>${esc(x.category)}</small></td><td><span class="pill">${esc(x.flavor)}</span></td><td>${esc(x.launchType)}<small>${esc(x.salesType)}</small></td><td>${esc(x.price)}</td><td><button class="detail-link" data-id="${esc(x.id)}">상세 보기 ↗</button></td></tr>`).join(''):'<tr><td colspan="7" class="empty-state">해당 조건의 출시 기록이 없습니다. 필터를 변경해 주세요.</td></tr>';
+    $('#table-pagination').innerHTML=`<button data-nav="prev" ${state.page<=1?'disabled':''}>← 이전</button><span>${state.page} / ${pages} 페이지</span><button data-nav="next" ${state.page>=pages?'disabled':''}>다음 →</button>`;
+  }
+  function showDetail(id){
+    const x=state.launches.find(r=>r.id===id);if(!x)return;
+    const field=(label,value)=>`<div class="detail-field"><small>${label}</small><strong>${esc(value||'미확인')}</strong></div>`;
+    const url=safeUrl(x.url);
+    $('#modal-body').innerHTML=`<div class="modal-eyebrow">${esc(x.brand)} · ${countries[x.country]||'🌐'} ${esc(x.country)}</div><h2 id="modal-title" class="modal-title">${esc(x.product)}</h2><div class="modal-sub">${dateText(x.date)} · ${esc(x.category)}</div><span class="pill">${esc(x.flavor)}</span><p class="modal-desc">${esc(x.characteristics)}</p><div class="detail-grid">${field('상품 분류',x.category)}${field('출시 유형',x.launchType)}${field('판매 형태',x.salesType)}${field('판매가격',x.price)}${field('모니터링일',x.monitoredAt)}${field('출처 유형',x.sourceType)}</div>${url?`<a class="source-button" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문 확인 ↗</a>`:'<span class="source-button disabled">출처 미확인</span>'}<p class="modal-basis"><strong>출시일 근거 / 비고</strong><br>${esc(x.dateBasis||'미기재')}</p>`;
+    $('#modal-root').hidden=false;document.body.style.overflow='hidden';$('#modal-close').focus();
+  }
+  function closeDetail(){$('#modal-root').hidden=true;document.body.style.overflow='';}
+  function renderWeekly(){
+    const meta=state.candidateMeta;const scan=meta.lastScanKst?dateText(meta.lastScanKst):'실행 전';
+    const hadScan=!!meta.lastScanKst;
+    setText('#weekly-date',hadScan?`LAST SCAN · ${scan}`:'FIRST SCAN · NOT YET RUN');
+    const status=hadScan?(meta.status==='ok'?'정상 수집':meta.status==='partial'?'일부 수집':'오류'):'미실행 (배포 후 시작)';
+    $('#scan-status').innerHTML=`<div class="scan-kpi"><small>LAST MONITORING</small><strong>${esc(scan)}</strong></div><div class="scan-kpi"><small>SCAN STATUS</small><strong class="${meta.status==='ok'?'ok':'warn'}">${esc(status)}</strong></div><div class="scan-kpi"><small>NEW LEADS THIS RUN</small><strong>${Number(meta.newItems||0)}건</strong></div>`;
+    const values=[...new Set(state.leads.map(x=>x.brand).filter(Boolean))].sort();const sel=$('#candidate-brand');const previous=sel.value;sel.replaceChildren(new Option('모든 브랜드',''));values.forEach(v=>sel.add(new Option(v,v)));sel.value=previous;
+    renderCandidates();
+  }
+  function renderCandidates(){
+    const q=$('#candidate-search').value.trim().toLowerCase();const brand=$('#candidate-brand').value;
+    const items=state.leads.filter(x=>(!brand||x.brand===brand)&&(!q||[x.title,x.brand,x.source,x.query].some(v=>String(v).toLowerCase().includes(q)))).sort((a,b)=>String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))).slice(0,120);
+    $('#candidate-list').innerHTML=items.length?items.map(x=>`<article class="queue-card"><div><div class="queue-top"><span class="pill grey">검토 대기</span><span>${esc(x.brand||'QSR')}</span><span>·</span><span>${esc(dateText((x.publishedAt||'').slice(0,10)))}</span><span>·</span><span>${esc(x.source||'뉴스 RSS')}</span></div><h3>${esc(x.title)}</h3><p>검색 그룹: ${esc(x.query||'—')}</p></div>${safeUrl(x.url)?`<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener noreferrer">원문 기사 ↗</a>`:''}</article>`).join(''):`<div class="empty-state"><span class="empty-icon">⌕</span><strong>${state.leads.length?'검색 조건에 맞는 기사가 없습니다':'아직 수집된 신규 기사 후보가 없습니다'}</strong>${state.leads.length?'다른 검색어나 브랜드를 선택하세요.':'GitHub Pages 배포 및 매주 월요일 자동 수집이 활성화되면 이곳에 기사 후보가 누적됩니다.'}</div>`;
+  }
+  function csvExport(){
+    const cols=[['출시일','date'],['국가','country'],['브랜드','brand'],['이미지','image'],['품목','category'],['상품명','product'],['Flavor','flavor'],['메뉴 특징','characteristics'],['출시 유형','launchType'],['판매 형태','salesType'],['URL','url'],['판매가','price'],['모니터링일','monitoredAt'],['출시일 근거/비고','dateBasis'],['출처 유형','sourceType']];
+    const quote=x=>'"'+String(x??'').replaceAll('"','""')+'"';
+    const str='\uFEFF'+[cols.map(c=>c[0]),...state.matched.map(x=>cols.map(c=>x[c[1]]))].map(row=>row.map(quote).join(',')).join('\r\n');
+    const blob=new Blob([str],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`QSR_KFood_Launches_${new Date().toISOString().slice(0,10)}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);
+  }
+  function bind(){
+    window.addEventListener('hashchange',()=>openView(location.hash.slice(1)));
+    $('#menu-toggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
+    $('#hero-explore').addEventListener('click',()=>navigate('launches'));
+    $('#more-launches').addEventListener('click',()=>navigate('launches'));
+    $$('.side-filter').forEach(b=>b.addEventListener('click',()=>{navigate('launches');$('#flavor-filter').value=b.dataset.preset;renderLaunches(true);}));
+    $$('.nav-item').forEach(a=>a.addEventListener('click',()=>$('#sidebar').classList.remove('open')));
+    for(const sel of ['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter','#sort-filter']){$(sel).addEventListener(sel==='#search-input'?'input':'change',()=>renderLaunches(true));}
+    $('#reset-filters').addEventListener('click',()=>{['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter'].forEach(s=>$(s).value='');renderLaunches(true);});
+    $('#launch-tbody').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b)showDetail(b.dataset.id)});
+    $('#recent-grid').addEventListener('click',e=>{const c=e.target.closest('[data-id]');if(c)showDetail(c.dataset.id)});
+    $('#recent-grid').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('[data-id]');if(c){e.preventDefault();showDetail(c.dataset.id)}}});
+    $('#table-pagination').addEventListener('click',e=>{const b=e.target.closest('[data-nav]');if(!b||b.disabled)return;state.page+=b.dataset.nav==='next'?1:-1;renderLaunches();});
+    $('#export-csv').addEventListener('click',csvExport);
+    $('#modal-close').addEventListener('click',closeDetail);$('#modal-scrim').addEventListener('click',closeDetail);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal-root').hidden)closeDetail();});
+    $('#candidate-search').addEventListener('input',renderCandidates);$('#candidate-brand').addEventListener('change',renderCandidates);
+    const kst = new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'short',day:'numeric'}).format(new Date());setText('#today-label',kst);
+  }
+  async function init(){
+    bind();
+    try {
+      const [history,news]=await Promise.all([
+        fetch('data/launches.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('launches '+r.status);return r.json()}),
+        fetch('data/candidates.json',{cache:'no-store'}).then(r=>r.ok?r.json():{records:[],lastScanKst:null,status:'pending',newItems:0}).catch(()=>({records:[],status:'pending'}))
+      ]);
+      state.launches=Array.isArray(history.records)?history.records:[];state.meta=history;
+      state.leads=Array.isArray(news.records)?news.records:[];state.candidateMeta=news;
+      fillSelect('#country-filter',freq(state.launches,'country').map(x=>x[0]));
+      fillSelect('#brand-filter',freq(state.launches,'brand').map(x=>x[0]));
+      fillSelect('#flavor-filter',freq(state.launches,x=>topFlavor(x.flavor)).map(x=>x[0]));
+      fillSelect('#type-filter',freq(state.launches,'salesType').map(x=>x[0]));
+      renderDashboard();renderLaunches();renderWeekly();openView(location.hash.slice(1)||'dashboard');
+    } catch(err){
+      console.error(err);
+      $('#app').insertAdjacentHTML('afterbegin','<div class="load-error">데이터를 불러오지 못했습니다. 웹서버에서 사이트를 실행했는지 확인하세요. (로컬 미리보기: python -m http.server)</div>');
+    }
+  }
+  init();
+})();
+</script>
+</body>
+</html>
