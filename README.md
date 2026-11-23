@@ -32,3 +32,16 @@ GitHub Actions의 `Publish K-Food Radar`를 한 번 수동 실행해 최초 배�
 주간 모니터링은 `Weekly K-Food QSR discovery`에서 수동 실행해 테스트할 수 있습니다. GitHub의 scheduled workflow는 일부 상황에서 지연되거나 비활성화될 수 있습니다.
 
 > **주의:** 이 저장소와 GitHub Pages는 공개일 수 있습니다. 출처가 확인된 공개 자료만 등록하고, 회사 기밀이나 개인정보를 게시하지 마세요. 뉴스 검색 결과는 실제 메뉴 출시를 뜻하지 않습니다.
+
+
+## 관리자 편집 (사진 교체·메뉴 수정·신규 등록)
+
+관리자 화면: https://ljheejh9448-sketch.github.io/kfood-qsr-radar/admin.html
+
+- 지정된 관리자 GitHub 계정과 저장소 전용 Fine-grained personal access token (`Contents: Read and write`)으로 인증합니다.
+- 업로드한 사진은 최대 1600px의 WebP로 변환해 `site/assets/uploads/`에 저장합니다.
+- 메뉴 수정·추가·삭제는 `site/data/launches.json`에 저장됩니다. GitHub Actions가 자동 재배포합니다.
+- 토큰은 브라우저 탭 메모리에서만 사용하며 저장·전송(제3자 대상)하지 않습니다. 토큰은 GitHub API 요청에만 사용합니다.
+- 편집 종료 후 **로그아웃**, 토큰 공유 금지, 공개 가능한 데이터·사진만 등록해야 합니다.
+
+자세한 사용 방법: [ADMIN_GUIDE_KO.md](ADMIN_GUIDE_KO.md)
