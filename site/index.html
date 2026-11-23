@@ -91,7 +91,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
         <section id="view-updates" class="view">
           <div class="page-head compact"><div><div class="eyebrow">WEEKLY DISCOVERY QUEUE</div><h1>주간 <span>신규 모니터링.</span></h1><p>매주 자동 검색으로 수집된 QSR × K-Flavor 관련 뉴스 후보입니다.</p></div><span class="asof" id="weekly-date">NEXT · SUNDAY 22:00 KST</span></div>
           <div id="scan-status" class="scan-status"></div>
-          <div class="subtle-card"><strong>검토 대기 기사 (출시 확정 아님)</strong><p>기사 제목·뉴스 링크·발행일만 수집합니다. 상품명, 실제 출시일, 메뉴 구성, 가격은 공식 출처 확인 후 별도로 확정하세요.</p></div>
+          <div class="subtle-card"><strong>기사 검토 · 출시 이력 등록 현황</strong><p>기사는 검토 대기로 수집됩니다. 관리자가 메뉴의 실제 출시 사실을 확인한 경우에만 ‘출시 이력 등록’으로 표시됩니다. 기사 발행일과 실제 출시일은 다를 수 있습니다.</p></div>
           <div class="queue-tools"><label class="search-field"><span>⌕</span><input id="candidate-search" placeholder="기사 제목·브랜드 검색" /></label><select id="candidate-brand"><option value="">모든 브랜드</option></select></div>
           <div class="queue-list" id="candidate-list"></div>
         </section>
@@ -181,10 +181,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     const values=[...new Set(state.leads.map(x=>x.brand).filter(Boolean))].sort();const sel=$('#candidate-brand');const previous=sel.value;sel.replaceChildren(new Option('모든 브랜드',''));values.forEach(v=>sel.add(new Option(v,v)));sel.value=previous;
     renderCandidates();
   }
+  const linkedLaunch = lead => state.launches.find(item=>item.sourceCandidateId===lead.id);
+  const leadReviewState = lead => linkedLaunch(lead)?'출시 이력 등록':lead.reviewStatus==='제외'?'검토 제외':'검토 대기';
   function renderCandidates(){
     const q=$('#candidate-search').value.trim().toLowerCase();const brand=$('#candidate-brand').value;
     const items=state.leads.filter(x=>(!brand||x.brand===brand)&&(!q||[x.title,x.brand,x.source,x.query].some(v=>String(v).toLowerCase().includes(q)))).sort((a,b)=>String(b.publishedAt||'').localeCompare(String(a.publishedAt||''))).slice(0,120);
-    $('#candidate-list').innerHTML=items.length?items.map(x=>`<article class="queue-card"><div><div class="queue-top"><span class="pill grey">검토 대기</span><span>${esc(x.brand||'QSR')}</span><span>·</span><span>${esc(dateText((x.publishedAt||'').slice(0,10)))}</span><span>·</span><span>${esc(x.source||'뉴스 RSS')}</span></div><h3>${esc(x.title)}</h3><p>검색 그룹: ${esc(x.query||'—')}</p></div>${safeUrl(x.url)?`<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener noreferrer">원문 기사 ↗</a>`:''}</article>`).join(''):`<div class="empty-state"><span class="empty-icon">⌕</span><strong>${state.leads.length?'검색 조건에 맞는 기사가 없습니다':'아직 수집된 신규 기사 후보가 없습니다'}</strong>${state.leads.length?'다른 검색어나 브랜드를 선택하세요.':'GitHub Pages 배포 및 매주 일요일 밤 10시 자동 수집이 활성화되면 이곳에 기사 후보가 누적됩니다.'}</div>`;
+    $('#candidate-list').innerHTML=items.length?items.map(x=>{const linked=linkedLaunch(x);const status=leadReviewState(x);return `<article class="queue-card"><div><div class="queue-top"><span class="pill grey">${esc(status)}</span><span>${esc(x.brand||'QSR')}</span><span>·</span><span>${esc(dateText((x.publishedAt||'').slice(0,10)))}</span><span>·</span><span>${esc(x.source||'뉴스 RSS')}</span></div><h3>${esc(x.title)}</h3><p>검색 그룹: ${esc(x.query||'—')}</p></div><div>${safeUrl(x.url)?`<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener noreferrer">원문 기사 ↗</a>`:''}${linked?`<button class="detail-link" type="button" data-linked-id="${esc(linked.id)}">등록된 메뉴 보기 ↗</button>`:''}</div></article>`}).join(''):`<div class="empty-state"><span class="empty-icon">⌕</span><strong>${state.leads.length?'검색 조건에 맞는 기사가 없습니다':'아직 수집된 신규 기사 후보가 없습니다'}</strong>${state.leads.length?'다른 검색어나 브랜드를 선택하세요.':'GitHub Pages 배포 및 매주 일요일 밤 10시 자동 수집이 활성화되면 이곳에 기사 후보가 누적됩니다.'}</div>`;
   }
   function csvExport(){
     const cols=[['출시일','date'],['국가','country'],['브랜드','brand'],['이미지','image'],['품목','category'],['상품명','product'],['Flavor','flavor'],['메뉴 특징','characteristics'],['출시 유형','launchType'],['판매 형태','salesType'],['URL','url'],['판매가','price'],['모니터링일','monitoredAt'],['출시일 근거/비고','dateBasis'],['출처 유형','sourceType']];
@@ -208,6 +210,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     $('#export-csv').addEventListener('click',csvExport);
     $('#modal-close').addEventListener('click',closeDetail);$('#modal-scrim').addEventListener('click',closeDetail);
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal-root').hidden)closeDetail();});
+    $('#candidate-list').addEventListener('click',e=>{const button=e.target.closest('[data-linked-id]');if(button)showDetail(button.dataset.linkedId);});
     $('#candidate-search').addEventListener('input',renderCandidates);$('#candidate-brand').addEventListener('change',renderCandidates);
     const kst = new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'short',day:'numeric'}).format(new Date());setText('#today-label',kst);
   }
