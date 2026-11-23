@@ -239,7 +239,7 @@ async function setLeadReview(id,status){
   target.reviewStatus=status;
   await request(CANDIDATE_ENDPOINT,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'review: '+(status==='제외'?'exclude':'restore')+' QSR news candidate',sha:newsSha,content:b64encode(JSON.stringify(next,null,2)+'\n'),branch:'main'})});
   var updated=await readNews();news=updated.value;newsSha=updated.sha;
-  if(activeLeadId===id&&status==='제외'){activeLeadId=null;}
+  if(activeLeadId===id&&status==='제외'){dirty=false;chosen=null;activeLeadId=null;pick(null,true);}
   renderLeads();notice('formStatus','기사 검토 상태가 저장되었습니다. 홈페이지도 자동 갱신됩니다.','good');
  }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
 }
