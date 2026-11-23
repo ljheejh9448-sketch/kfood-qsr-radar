@@ -105,8 +105,8 @@ function drawPhoto(){
  else {var d=document.createElement('div');d.id='photoPreview';d.className='empty';d.textContent='사진 미등록';el.replaceWith(d);}
 }
 function markDirty(){dirty=true;$('dirty').textContent='● 미저장 변경사항';}
-function pick(id){
- if(busy)return;if(dirty&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return;
+function pick(id,internal){
+ if(busy&&!internal)return;if(dirty&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return;
  dirty=false;chosen=id;pictureChange=null;clearLocalPhoto();
  var r=record();fields.forEach(function(key){form.elements.namedItem(key).value=r?.[key]||'';});
  if(!r)form.elements.namedItem('monitoredAt').value=today();
@@ -137,7 +137,7 @@ async function connect(){
   var repository=await request(ROOT);if(!(repository.permissions?.push||repository.permissions?.admin))throw Error('GitHub 저장소의 쓰기 권한이 없습니다.');
   var res=await readDb();db=res.value;sha=res.sha;
   $('loginPanel').hidden=true;$('work').classList.remove('hidden');$('accountBar').classList.remove('hidden');$('userName').textContent='● '+u.login+' · 관리자';
-  dirty=false;chosen=null;pick(null);
+  dirty=false;chosen=null;pick(null,true);
  }catch(e){token='';notice('loginStatus',errorText(e),'error');}finally{lock(false);}
 }
 function logout(){
@@ -208,14 +208,14 @@ async function remove(){
  try{
   var latest=await readDb();if(latest.sha!==sha)throw Error('DB가 변경됐습니다. 다시 읽고 시도해주세요.');
   var next=JSON.parse(JSON.stringify(db));next.records=next.records.filter(function(x){return x.id!==chosen;});next.sourceAsOf=today();
-  await store(next,'data: remove menu '+r.product);dirty=false;chosen=null;pictureChange=null;clearLocalPhoto();pick(null);
+  await store(next,'data: remove menu '+r.product);dirty=false;chosen=null;pictureChange=null;clearLocalPhoto();pick(null,true);
   notice('formStatus','메뉴 삭제 완료. GitHub Pages에 자동 반영됩니다.','good');
  }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
 }
 async function reload(){
  if(busy)return;if(dirty&&!confirm('저장하지 않은 수정내용을 버리고 최신 DB를 불러올까요?'))return;
  lock(true);
- try{var r=await readDb();db=r.value;sha=r.sha;dirty=false;var id=chosen;chosen=null;pick(db.records.some(function(x){return x.id===id;})?id:null);notice('formStatus','최신 DB 불러오기 완료.','good');}
+ try{var r=await readDb();db=r.value;sha=r.sha;dirty=false;var id=chosen;chosen=null;pick(db.records.some(function(x){return x.id===id;})?id:null,true);notice('formStatus','최신 DB 불러오기 완료.','good');}
  catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
 }
 $('connect').addEventListener('click',connect);
