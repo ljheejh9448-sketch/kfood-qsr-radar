@@ -5,6 +5,9 @@ on:
     # Every Monday 09:17 KST = Monday 00:17 UTC
     - cron: '17 0 * * 1'
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/weekly-monitor.yml'
 
 permissions:
   contents: write
