@@ -1,0 +1,56 @@
+# K-Food Radar 관리자 편집 가이드
+
+## 접속
+
+- 공개 홈페이지: https://ljheejh9448-sketch.github.io/kfood-qsr-radar/
+- 관리자 편집 화면: https://ljheejh9448-sketch.github.io/kfood-qsr-radar/admin.html
+
+관리자 페이지는 누구나 열어볼 수 있지만 **저장은 지정된 GitHub 관리자 계정 `ljheejh9448-sketch`과 저장소 쓰기 권한이 있는 유효한 토큰**이 없으면 불가능합니다.
+
+## 1. 처음 한 번: 저장소 전용 GitHub 토큰 발급
+
+1. GitHub에 관리자 계정으로 로그인
+2. [Fine-grained personal access token 생성](https://github.com/settings/personal-access-tokens/new)
+3. **Resource owner:** `ljheejh9448-sketch`
+4. **Repository access:** `Only select repositories` → `kfood-qsr-radar`
+5. **Repository permissions:** `Contents: Read and write` (Metadata는 자동 읽기)
+6. 짧은 만료기간을 지정하고 토큰 발급
+7. 관리자 홈페이지의 토큰 입력란에 직접 붙여넣고 **관리자 인증 후 편집 시작** 클릭
+
+**GitHub 비밀번호를 입력하지 않습니다.** 발급받은 토큰은 누구에게도 공유하지 마세요. ChatGPT 채팅에 토큰을 붙여넣지 마세요. 발급된 토큰이 노출되면 GitHub에서 즉시 폐기합니다.
+
+관리자 페이지는 GitHub의 REST API를 사용해 토큰을 확인합니다. 토큰은 해당 탭의 메모리에서만 사용하고 로컬 저장소, 쿠키, 파일, URL에 저장하지 않습니다. 브라우저를 새로고침하거나 로그아웃하면 다시 입력해야 합니다. 브라우저 확장 기능 또는 손상된 PC로부터 모든 공격을 막는 것은 아니므로 회사에서 허용된 안전한 환경만 사용하세요.
+
+## 2. 기존 메뉴 정보 수정
+
+왼쪽 출시 메뉴 목록에서 상품을 선택해 필드를 수정한 후 **저장하고 홈페이지 반영**을 누릅니다. 신규 메뉴는 **+ 신규**를 클릭합니다.
+
+- 필수: 출시일(`YYYY-MM` 또는 `YYYY-MM-DD`), 국가, 브랜드, 상품명
+- 나머지: 품목, Flavor, 출시 유형, 판매 형태, 판매가격, 모니터링일, 메뉴 특징, URL, 출시일 근거, 출처 유형
+- 사진: JPG/PNG/WebP 선택 → WebP로 축소/변환 → 저장 시 GitHub에 업로드
+- 사진 제거: **사진 연결 제거**를 누른 뒤 저장
+
+저장 시 원본 사진을 1600px 이하·WebP로 변환해 메타데이터를 지우고 2.5MB 이내 파일만 업로드합니다. **재게시 권한이 있는 이미지**만 사용하세요.
+
+## 3. 저장과 배포
+
+관리자 편집은 GitHub의 `site/data/launches.json` 파일을 수정하고 사진은 `site/assets/uploads/`에 저장합니다. GitHub Actions의 **Publish K-Food Radar** 작업이 사이트를 재배포합니다. 저장 후 홈페이지를 새로고침하여 확인하세요. 배포가 완료되기 전까지 이전 내용이 잠시 표시될 수 있습니다.
+
+[GitHub Actions 배포 기록](https://github.com/ljheejh9448-sketch/kfood-qsr-radar/actions)
+
+관리자 저장 전에 서버의 최신 파일 SHA를 확인하므로 다른 사람이 먼저 수정했다면 덮어쓰지 않고 중단합니다. 이 경우 **최신 DB 다시 읽기** 후 변경사항을 다시 적용하세요.
+
+## 4. 보안 및 운영
+
+- 토큰은 `kfood-qsr-radar` 저장소 **한 곳에만 접근**하도록 발급합니다.
+- 토큰 만료기간은 가급적 짧게 설정하고 사용 후 로그아웃합니다.
+- GitHub Pages는 공개 홈페이지이므로 등록한 메뉴 정보와 사진, 출처가 외부에서도 조회될 수 있습니다.
+- 회사 내부자료·개인정보·이미지 사용 권한이 없는 콘텐츠를 공개하지 마세요.
+- 팀원은 일반 홈페이지에서 정보를 읽을 수 있습니다. 관리자 계정에 쓰기 권한이 없는 사람은 수정할 수 없습니다.
+- 매주 일요일 밤 10시(KST) 신규 기사 검색은 별도의 **Weekly K-Food QSR discovery** 작업으로 계속 실행되며, 자동 발견된 뉴스는 확정 메뉴 DB에 자동 등록되지 않습니다.
+
+## 한계
+
+현재 인증은 백엔드 OAuth 로그인 화면이 아닌 **GitHub 저장소 전용 세분화 토큰** 방식입니다. 토큰 발급 및 최초 입력은 관리자가 직접 해야 하며, 이 과정을 대리 실행하거나 토큰을 전달받지 않습니다.
+
+이미지 업로드 성공 이후 메뉴 DB 커밋이 실패하면 아직 사용되지 않는 사진 파일이 GitHub 저장소에 남을 수 있습니다. 필요할 경우 GitHub의 파일 이력에서 정리할 수 있습니다.
