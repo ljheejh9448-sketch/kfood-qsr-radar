@@ -1,0 +1,51 @@
+name: Weekly K-Food QSR discovery
+
+on:
+  schedule:
+    # Every Monday 09:17 KST = Monday 00:17 UTC
+    - cron: '17 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: weekly-kfood-monitor
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover K-Food QSR news articles (unverified leads)
+        run: python scripts/weekly_scan.py
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- site/data/candidates.json; then
+            echo 'No changes'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add site/data/candidates.json
+            git commit -m 'chore: weekly QSR K-food news discovery'
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - name: Publish refreshed site
+        id: deployment
+        uses: actions/deploy-pages@v4
