@@ -1,6 +1,6 @@
 {
   "source": "2026_Global_QSR_KFood_Launch_Tracker.xlsx",
-  "sourceAsOf": "2026-11-23",
+  "sourceAsOf": "2026-11-24",
   "note": "원본 엑셀 기반 조사자료; 모든 개별 출시일 및 가격의 재검증 완료를 의미하지 않음. 동일 캠페인의 제품별 행 수를 포함.",
   "records": [
     {
@@ -1149,18 +1149,19 @@
       "brand": "KFC",
       "image": "assets/uploads/menu-mwso6vhl-2989a250c69c42df9948a7b2c1a6b2fc.webp",
       "category": "치킨 버거",
-      "product": "Korean Dunked Range — Zinger Burger",
+      "product": "Korean Dunked Line — Zinger Burger",
       "flavor": "고추장·참깨",
-      "characteristics": "기존 Zinger Burger의 크리스피 치킨에 고추장·참깨 기반 소스 코팅",
+      "characteristics": "KFC의 바삭한 치킨에 매콤한 고추장 베이스 소스와 볶은 참깨, 감칠맛(우마미)을 듬뿍 입힌 것이 핵심",
       "launchType": "기존 메뉴에 신규 소스를 덧입힌 형식",
       "salesType": "LTO",
       "url": "https://qsrmedia.asia/menu-innovations/news/kfc-india-adds-korean-inspired-flavours-dunked-chicken-range",
-      "price": "299루피~",
+      "price": "버거 299루피 (기존 버거 229루피)",
       "monitoredAt": "2026-11-23",
       "dateBasis": "2026-11-10",
       "sourceType": "브랜드 보도자료 인용",
       "id": "xls-061",
-      "status": "기존 조사자료"
+      "status": "기존 조사자료",
+      "sourceHeadline": ""
     },
     {
       "date": "2026-11-10",
