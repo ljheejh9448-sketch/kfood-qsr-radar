@@ -1,9 +1,32 @@
 {
   "source": "Google News RSS discovery / editorial review required",
-  "lastScanKst": null,
-  "status": "pending",
-  "newItems": 0,
-  "queriesSucceeded": 0,
+  "lastScanKst": "2026-11-23T11:27:07+09:00",
+  "status": "ok",
+  "newItems": 2,
+  "queriesSucceeded": 12,
   "queriesFailed": 0,
-  "records": []
+  "records": [
+    {
+      "id": "rss-a3eeb07a393fb4",
+      "brand": "KFC",
+      "title": "KFC India brings Korean flavours to a desi matchmaking drama with Aoora in new campaign - MediaNews4U",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxONkFCYjU3WEozc09CLU83SDJNOFVrU09xODhiNnI4ME9Pc0lPZDNrSTNsSlNlNnY5NzVRUkR4dUdIY095eWVfWWpzcHFaMjJpcUtwUFQxQmpQZ05jN1NaSjlRX1c0eG1oX0NtbG1GYTBJUG5pSE83MlZFZEstbG44dllGZWhST3NfVzBnNzlnaklFQTNjTWZ3UFNpU25qbm9ybkpuemNuYy1rZXIydE1SNHI1aXRaR0k?oc=5",
+      "source": "MediaNews4U",
+      "publishedAt": "2026-11-18T10:15:33+00:00",
+      "discoveredAt": "2026-11-23T11:27:07+09:00",
+      "query": "KFC",
+      "status": "검토 대기"
+    },
+    {
+      "id": "rss-a94eca27c8e1dc",
+      "brand": "KFC",
+      "title": "KFC India brings Korean flavours to its latest campaign - afaqs!",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQLTJhRHlxVkhwYkYzY0VSMkdIbnV2VDdMc3g1eGRvUkRaOE1wdUR3Wk1hWllILWlTMlZtaFFzTUcteDJjOGREUi04S05rb3N2M2Fzams2U2FSQi13Z1ZCUzluWlczT29Wd2VfSWQzU2hNV3VsbmRVOE9Rb2lyN25pWDJLelo1Q0RmVmphNW1QTXpUNnpickY0dm1UdUhPNWYwQks1TzRR?oc=5",
+      "source": "afaqs!",
+      "publishedAt": "2026-11-17T08:14:14+00:00",
+      "discoveredAt": "2026-11-23T11:27:07+09:00",
+      "query": "KFC",
+      "status": "검토 대기"
+    }
+  ]
 }
