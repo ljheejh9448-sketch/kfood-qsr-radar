@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' blob: data:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>관리자 편집 | K-Food Radar</title>
+<style>
+:root{font:14px system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;color:#203040;background:#f8fafb}
+*{box-sizing:border-box}body{margin:0}a{color:#d95837;text-decoration:none}a:hover{text-decoration:underline}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.6;cursor:wait}
+header{background:white;border-bottom:1px solid #e8edf0;padding:18px max(22px,calc((100vw - 1240px)/2));display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{font-size:17px;font-weight:850;letter-spacing:-.5px}.brand em{font-style:normal;color:#ff7148}
+main{max-width:1240px;margin:0 auto;padding:30px 20px 70px}.eyebrow{font-size:10px;letter-spacing:2px;font-weight:850;color:#ed704c}h1{font-size:34px;letter-spacing:-1.4px;margin:8px 0 6px}h2{margin:0 0 8px;font-size:20px}.muted{font-size:12px;color:#86949e;line-height:1.7}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.notice{background:#fff;border:1px solid #e2e8ee;padding:13px 16px;border-radius:12px;margin:22px 0;color:#556673;line-height:1.75}
+.card{background:#fff;border:1px solid #e6ecf1;border-radius:16px;box-shadow:0 4px 24px #0e203308}.login{max-width:720px;margin:28px auto;padding:28px}.login p,.login ol{line-height:1.85;color:#596a77}.login ol{padding-left:20px}.login input{width:100%}.login label{display:block;margin:16px 0 7px;font-weight:800;font-size:12px}
+input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-radius:9px;padding:11px;background:white;color:#243645;outline:none}input:focus,textarea:focus,select:focus{border-color:#f08e68;box-shadow:0 0 0 3px #fce3da}textarea{resize:vertical;min-height:80px}
+.btn{border:0;border-radius:9px;background:#edf2f5;color:#344b5b;padding:11px 16px;font-size:13px;font-weight:800}.primary{background:#ff7046;color:#fff}.outline{background:#fff;border:1px solid #dce5ea}.danger{background:#fff2ee;color:#ba4c37}
+.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.status{margin:15px 0;border-radius:10px;padding:12px 14px;background:#eff3f7;color:#57697a;line-height:1.6;white-space:pre-wrap}.status.error{background:#fff1ed;color:#b14934}.status.good{background:#e8f7ee;color:#227b48}.status.progress{background:#edf4ff;color:#2d6399}
+.work{display:grid;grid-template-columns:minmax(250px,335px) minmax(0,1fr);gap:18px;align-items:start}.left{position:sticky;top:18px;overflow:hidden}.left-head{padding:18px;border-bottom:1px solid #edf1f5}.left-head strong{font-size:16px}.left-head input{margin-top:12px}.items{overflow:auto;max-height:70vh;padding:8px}
+.item{width:100%;display:flex;gap:11px;align-items:center;border:1px solid transparent;border-radius:10px;padding:12px;text-align:left;background:#fff}.item:hover,.item.active{background:#fff3ed;border-color:#ffdccc}.item img,.mini-empty{width:48px;height:48px;flex-shrink:0;border-radius:8px;object-fit:cover;background:#edf1f5}.mini-empty{display:grid;place-items:center;color:#9babb6;font-size:22px}
+.item strong{display:block;font-size:12px;color:#2e3d4b;line-height:1.5}.item small{display:block;color:#84929d;font-size:11px;margin-top:4px}
+.right{padding:23px 26px}.section{font-size:11px;font-weight:900;letter-spacing:1px;color:#6f7e8a;padding:18px 0 8px;border-bottom:1px solid #e9eff2;margin:10px 0 15px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:750;font-size:12px;color:#4b5d6d}
+.photo{display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:center;border:1px dashed #d4dde5;border-radius:12px;background:#fbfcfd;padding:16px}
+.photo img,.photo .empty{width:190px;height:160px;border-radius:10px;object-fit:contain;background:#eff3f5;border:1px solid #e0e8ed}.photo .empty{display:grid;place-items:center;color:#9aa9b4}
+.photo p{font-size:11px;color:#788b99;line-height:1.65}.photo input{font-size:12px}
+.savebar{margin-top:20px;border-top:1px solid #edf1f5;padding-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.hidden,[hidden]{display:none!important}
+@media(max-width:870px){.work{grid-template-columns:1fr}.left{position:static}.items{max-height:240px}.right{padding:18px}.photo{grid-template-columns:1fr}}
+@media(max-width:570px){.fields{grid-template-columns:1fr}h1{font-size:27px}main{padding:20px 12px}.login{padding:18px}}
+</style></head><body>
+<header><div class="brand">K-FOOD <em>RADAR</em> <small style="font-size:11px;color:#94a0aa">CONTENT ADMIN</small></div><a href="./index.html" class="btn outline">← 공개 홈페이지</a></header>
+<main>
+<div class="heading"><div><div class="eyebrow">CONTENT MANAGEMENT</div><h1>메뉴 사진 · 정보 편집</h1><p class="muted">메뉴 사진 업로드/교체 · 기존 이력 수정 · 신규 출시 메뉴 등록 · 자동 게시</p></div><div class="actions hidden" id="accountBar"><span id="userName" class="muted"></span><button id="logout" class="btn outline">로그아웃</button></div></div>
+<div class="notice"><strong>관리자 전용 쓰기 기능:</strong> 누구나 이 화면은 볼 수 있지만, 지정된 GitHub 계정과 저장소 쓰기 권한이 있는 토큰만 저장할 수 있습니다. 토큰은 브라우저 메모리에서만 사용하며 파일·주소·브라우저 저장소에 기록하지 않습니다. 업로드 사진은 공개되므로 재게시 권한이 있는 이미지로만 교체하세요.</div>
+<section id="loginPanel" class="card login">
+<h2>GitHub 관리자 인증</h2>
+<p>GitHub Pages는 별도 로그인 서버가 없으므로 GitHub <strong>Fine-grained personal access token</strong>을 사용합니다. GitHub 비밀번호를 입력하지 마세요.</p>
+<ol><li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Fine-grained token 만들기</a></li><li>Repository access: <strong>Only select repositories</strong> → <strong>kfood-qsr-radar</strong></li><li>Repository permissions: <strong>Contents → Read and write</strong></li><li>만료기간을 짧게 설정하고 발급된 토큰을 아래에 붙여넣으세요.</li></ol>
+<label for="token">GitHub token</label><input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_...">
+<div class="actions" style="margin-top:16px"><button id="connect" class="btn primary">관리자 인증 후 편집 시작</button><span class="muted">토큰은 채팅·메일로 공유하지 마세요.</span></div><div id="loginStatus" class="status hidden" role="status" aria-live="polite"></div>
+</section>
+<section id="work" class="work hidden">
+<aside class="card left">
+<div class="left-head"><div class="actions" style="justify-content:space-between"><div><strong>출시 메뉴 DB</strong><div id="count" class="muted"></div></div><button id="newMenu" class="btn primary">+ 신규</button></div><input id="search" type="search" placeholder="상품명·브랜드·국가 검색"></div>
+<div id="items" class="items"></div>
+</aside>
+<section class="card right">
+<div class="actions" style="justify-content:space-between"><div><h2 id="formTitle">메뉴 수정</h2><span id="recordId" class="muted"></span></div><span id="dirty" class="muted">변경사항 없음</span></div>
+<form id="form" novalidate>
+<div class="section">상품 기본 정보</div><div class="fields">
+<div class="field"><label>출시일 *</label><input name="date" required placeholder="2026-11-10 또는 2026-11"></div>
+<div class="field"><label>국가 *</label><input name="country" required maxlength="100" placeholder="인도"></div>
+<div class="field"><label>브랜드 *</label><input name="brand" required maxlength="140" placeholder="KFC"></div>
+<div class="field"><label>상품명 *</label><input name="product" required maxlength="250" placeholder="Korean Dunked Chicken"></div>
+<div class="field"><label>품목</label><input name="category" maxlength="150" placeholder="버거·치킨·피자…"></div>
+<div class="field"><label>Flavor</label><input name="flavor" maxlength="180" placeholder="고추장"></div>
+<div class="field"><label>출시 유형</label><input name="launchType" maxlength="250"></div>
+<div class="field"><label>판매 형태</label><input name="salesType" maxlength="100" placeholder="LTO"></div>
+<div class="field"><label>판매가격</label><input name="price" maxlength="180" placeholder="미확인"></div>
+<div class="field"><label>모니터링일</label><input name="monitoredAt" type="date"></div>
+<div class="field full"><label>메뉴 특징</label><textarea name="characteristics" maxlength="4000" rows="4"></textarea></div>
+<div class="field full"><label>원문 URL</label><input name="url" type="url" maxlength="1800" placeholder="https://..."></div>
+<div class="field full"><label>출시일 근거 / 비고</label><textarea name="dateBasis" rows="3" maxlength="2500"></textarea></div>
+<div class="field"><label>출처 유형</label><input name="sourceType" maxlength="150" placeholder="브랜드 공식"></div>
+</div>
+<div class="section">상품 사진</div>
+<div class="photo"><div id="photoPreview" class="empty">사진 미등록</div>
+<div><strong>사진 교체 · 새 사진 등록</strong><input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp" style="margin:11px 0"><button class="btn outline" type="button" id="clearPhoto">사진 연결 제거</button>
+<p>JPG·PNG·WebP 지원. 사진은 자동으로 최대 1600px의 WebP로 변환되고 메타데이터가 제거됩니다. 변환 후 2.5MB 이하만 업로드됩니다.</p>
+<p>공개된 GitHub 저장소에 이미지가 저장됩니다. 사용 권한이 확인된 사진만 올리세요.</p></div></div>
+<div id="formStatus" class="status hidden" role="status" aria-live="polite"></div>
+<div class="savebar"><button id="deleteMenu" class="btn danger" type="button">메뉴 삭제</button><div class="actions"><button id="reload" class="btn outline" type="button">최신 DB 다시 읽기</button><button id="save" class="btn primary" type="submit">저장하고 홈페이지 반영</button></div></div>
+</form></section></section>
+</main>
+<script>
+(function(){
+'use strict';
+var OWNER='ljheejh9448-sketch',REPO='kfood-qsr-radar',DATA='site/data/launches.json',ROOT='/repos/'+OWNER+'/'+REPO,ENDPOINT=ROOT+'/contents/'+DATA;
+var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType'];
+var token='',sha='',db=null,chosen=null,dirty=false,busy=false,newPicture=null,previewUrl='',pictureChange=null;
+var $=function(x){return document.getElementById(x);};
+var form=$('form');
+var today=function(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());};
+function notice(id,message,kind){var n=$(id);n.className='status '+(kind||'');n.hidden=false;n.textContent=message;}
+function errorText(e){if(e.status===401)return '토큰이 유효하지 않거나 만료됐습니다.';if(e.status===403)return 'GitHub 쓰기 권한이 없습니다. 토큰의 저장소 및 Contents 권한을 확인해주세요.';if(e.status===409||e.status===422)return '서버의 파일이 변경되었거나 GitHub가 저장을 거절했습니다. 최신 DB를 다시 읽어주세요.';return e.message||String(e);}
+function lock(value){busy=value;['connect','newMenu','save','deleteMenu','reload','logout'].forEach(function(id){$(id).disabled=value;});}
+function b64decode(s){var raw=atob(s.replace(/\s/g,'')),bytes=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);return new TextDecoder().decode(bytes);}
+function b64encode(s){var bytes=new TextEncoder().encode(s),raw='';for(var i=0;i<bytes.length;i+=8192)raw+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192));return btoa(raw);}
+async function request(path,config){
+ if(!token)throw Error('관리자 인증이 필요합니다.');
+ var options=Object.assign({method:'GET'},config||{});
+ options.headers=Object.assign({'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28'},options.headers||{});
+ var r;try{r=await fetch('https://api.github.com'+path,options);}catch(e){throw Error('GitHub API에 연결하지 못했습니다. 네트워크·회사 보안 정책을 확인하세요.');}
+ var j={};try{j=await r.json();}catch(e){}
+ if(!r.ok){var err=Error('GitHub ('+r.status+'): '+(j.message||r.statusText));err.status=r.status;throw err;}return j;
+}
+async function readDb(){
+ var res=await request(ENDPOINT+'?ref=main');if(!res.sha||!res.content)throw Error('메뉴 DB 파일을 읽지 못했습니다.');
+ var value=JSON.parse(b64decode(res.content));if(!Array.isArray(value.records))throw Error('DB 형식 오류');return {value:value,sha:res.sha};
+}
+function imagePath(s){return /^assets\/uploads\/[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/.test(String(s||''));}
+function record(){return db?.records?.find(function(r){return r.id===chosen;});}
+function clearLocalPhoto(){if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl='';newPicture=null;$('photoInput').value='';}
+function drawPhoto(){
+ var el=$('photoPreview'),path=previewUrl||(pictureChange===null?record()?.image:pictureChange);
+ if(path&&(previewUrl||imagePath(path))){var img=document.createElement('img');img.id='photoPreview';img.src=path;img.alt='메뉴 사진';el.replaceWith(img);}
+ else {var d=document.createElement('div');d.id='photoPreview';d.className='empty';d.textContent='사진 미등록';el.replaceWith(d);}
+}
+function markDirty(){dirty=true;$('dirty').textContent='● 미저장 변경사항';}
+function pick(id){
+ if(busy)return;if(dirty&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return;
+ dirty=false;chosen=id;pictureChange=null;clearLocalPhoto();
+ var r=record();fields.forEach(function(key){form.elements.namedItem(key).value=r?.[key]||'';});
+ if(!r)form.elements.namedItem('monitoredAt').value=today();
+ $('formTitle').textContent=r?'기존 메뉴 수정':'신규 메뉴 추가';
+ $('recordId').textContent=r?'DB ID: '+r.id:'저장 시 신규 ID 자동 생성';
+ $('deleteMenu').hidden=!r;$('dirty').textContent='변경사항 없음';$('formStatus').hidden=true;
+ drawPhoto();renderList();
+}
+function renderList(){
+ if(!db)return;var q=$('search').value.trim().toLowerCase();
+ var rows=db.records.filter(function(r){return !q||[r.product,r.brand,r.country,r.flavor].some(function(s){return String(s||'').toLowerCase().includes(q);});}).sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''));});
+ $('count').textContent=db.records.length+'건 등록 · '+rows.length+'건 표시';
+ var root=$('items');root.replaceChildren();
+ rows.forEach(function(r){
+   var btn=document.createElement('button');btn.type='button';btn.className='item'+(chosen===r.id?' active':'');
+   var photo;if(imagePath(r.image)){photo=document.createElement('img');photo.src=r.image;photo.alt='';photo.loading='lazy';}
+   else{photo=document.createElement('span');photo.className='mini-empty';photo.textContent='◈';}
+   var content=document.createElement('span'),title=document.createElement('strong'),sub=document.createElement('small');
+   title.textContent=r.product||'(이름 없음)';sub.textContent=[r.country,r.brand,r.date].filter(Boolean).join(' · ');
+   content.append(title,sub);btn.append(photo,content);btn.addEventListener('click',function(){pick(r.id);});root.append(btn);
+ });
+}
+async function connect(){
+ if(busy)return;var raw=$('token').value.trim();if(raw.length<15){notice('loginStatus','GitHub 토큰을 입력해주세요.','error');return;}
+ $('token').value='';token=raw;lock(true);notice('loginStatus','GitHub 계정과 권한 확인 중…','progress');
+ try{
+  var u=await request('/user');if(String(u.login||'').toLowerCase()!==OWNER)throw Error('이 저장소에서 허용된 관리자 계정이 아닙니다.');
+  var repository=await request(ROOT);if(!(repository.permissions?.push||repository.permissions?.admin))throw Error('GitHub 저장소의 쓰기 권한이 없습니다.');
+  var res=await readDb();db=res.value;sha=res.sha;
+  $('loginPanel').hidden=true;$('work').classList.remove('hidden');$('accountBar').classList.remove('hidden');$('userName').textContent='● '+u.login+' · 관리자';
+  dirty=false;chosen=null;pick(null);
+ }catch(e){token='';notice('loginStatus',errorText(e),'error');}finally{lock(false);}
+}
+function logout(){
+ if(busy)return;if(dirty&&!confirm('변경사항을 저장하지 않고 로그아웃할까요?'))return;
+ token='';db=null;sha='';chosen=null;dirty=false;clearLocalPhoto();pictureChange=null;
+ $('work').classList.add('hidden');$('accountBar').classList.add('hidden');$('loginPanel').hidden=false;
+ notice('loginStatus','로그아웃 완료. 토큰은 저장하지 않았습니다.','good');
+}
+async function optimize(file){
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('JPG, PNG, WebP 파일만 업로드할 수 있습니다.');
+ if(file.size>12*1024*1024)throw Error('원본 이미지가 12MB를 초과합니다.');
+ var bm=await createImageBitmap(file).catch(function(){throw Error('정상적인 이미지 파일이 아닙니다.');});
+ try{
+  var scale=Math.min(1,1600/Math.max(bm.width,bm.height)),c=document.createElement('canvas');
+  c.width=Math.max(1,Math.round(bm.width*scale));c.height=Math.max(1,Math.round(bm.height*scale));
+  c.getContext('2d').drawImage(bm,0,0,c.width,c.height);
+  var blob=await new Promise(function(resolve){c.toBlob(resolve,'image/webp',.84);});
+  if(!blob||blob.type!=='image/webp')throw Error('WebP 사진 변환이 실패했습니다.');
+  if(blob.size>2.5*1024*1024)throw Error('사진 변환 후에도 2.5MB를 초과합니다.');
+  return blob;
+ }finally{bm.close();}
+}
+async function choosePhoto(){
+ var f=$('photoInput').files[0];if(!f)return;
+ try{var b=await optimize(f);clearLocalPhoto();newPicture=b;previewUrl=URL.createObjectURL(b);pictureChange=null;drawPhoto();markDirty();notice('formStatus','사진 변환 완료. 저장 버튼을 누르면 GitHub에 업로드됩니다.','good');}
+ catch(e){notice('formStatus',errorText(e),'error');}
+}
+function fromForm(){
+ var obj={};fields.forEach(function(key){obj[key]=String(form.elements.namedItem(key).value||'').trim();});
+ if(!/^\d{4}-(0[1-9]|1[0-2])(?:-(0[1-9]|[12]\d|3[01]))?$/.test(obj.date))throw Error('출시일은 2026-11 또는 2026-11-10 형식으로 입력하세요.');
+ if(!obj.country||!obj.brand||!obj.product)throw Error('출시일, 국가, 브랜드, 상품명은 필수입니다.');
+ if(obj.url){var url;try{url=new URL(obj.url);}catch(e){throw Error('출처 URL이 올바르지 않습니다.');}if(!['http:','https:'].includes(url.protocol))throw Error('출처 URL은 http 또는 https만 허용됩니다.');}
+ obj.id=chosen||'manual-'+crypto.randomUUID();
+ obj.status=chosen?(record()?.status||'관리자 수정'):'관리자 등록';
+ obj.image=pictureChange===null?(record()?.image||''):pictureChange;
+ return obj;
+}
+async function uploadPhoto(blob){
+ var file='menu-'+Date.now().toString(36)+'-'+crypto.randomUUID().replace(/-/g,'')+'.webp';
+ var base64=await new Promise(function(resolve,reject){var fr=new FileReader();fr.onload=function(){resolve(String(fr.result).split(',')[1]);};fr.onerror=function(){reject(Error('이미지 파일 처리 오류'));};fr.readAsDataURL(blob);});
+ await request(ROOT+'/contents/site/assets/uploads/'+file,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'media: add K-Food menu photo',content:base64,branch:'main'})});
+ return 'assets/uploads/'+file;
+}
+async function store(next,commit){
+ await request(ENDPOINT,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:commit,sha:sha,content:b64encode(JSON.stringify(next,null,2)+'\n'),branch:'main'})});
+ var verified=await readDb();db=verified.value;sha=verified.sha;
+}
+async function save(){
+ if(busy)return;var row;try{row=fromForm();}catch(e){notice('formStatus',errorText(e),'error');return;}
+ lock(true);notice('formStatus','저장소의 최신 데이터와 충돌 여부를 확인합니다…','progress');
+ try{
+  var latest=await readDb();if(latest.sha!==sha)throw Error('다른 편집자가 먼저 수정했습니다. 최신 DB 다시 읽기 후 재시도해주세요.');
+  if(newPicture){notice('formStatus','메뉴 사진을 GitHub에 업로드하고 있습니다…','progress');row.image=await uploadPhoto(newPicture);}
+  var next=JSON.parse(JSON.stringify(db)),idx=next.records.findIndex(function(x){return x.id===row.id;});
+  if(idx>=0)next.records[idx]=Object.assign({},next.records[idx],row);else next.records.unshift(row);
+  next.sourceAsOf=today();notice('formStatus','수정된 DB를 저장하고 있습니다…','progress');
+  await store(next,(idx>=0?'data: edit menu ':'data: add menu ')+row.product);
+  clearLocalPhoto();dirty=false;chosen=row.id;pictureChange=null;
+  var saved=record();fields.forEach(function(key){form.elements.namedItem(key).value=saved[key]||'';});
+  $('formTitle').textContent='기존 메뉴 수정';$('recordId').textContent='DB ID: '+row.id;$('deleteMenu').hidden=false;$('dirty').textContent='저장 완료';renderList();drawPhoto();
+  notice('formStatus','GitHub 저장 성공! 홈페이지는 자동 재배포됩니다. 배포 후 새로고침하여 확인하세요.','good');
+ }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
+}
+async function remove(){
+ if(busy||!chosen)return;var r=record();
+ if(!confirm('이 메뉴를 출시 이력에서 삭제할까요?\n'+r.product+'\n이전 Git 커밋에서 복구할 수 있습니다.'))return;
+ lock(true);
+ try{
+  var latest=await readDb();if(latest.sha!==sha)throw Error('DB가 변경됐습니다. 다시 읽고 시도해주세요.');
+  var next=JSON.parse(JSON.stringify(db));next.records=next.records.filter(function(x){return x.id!==chosen;});next.sourceAsOf=today();
+  await store(next,'data: remove menu '+r.product);dirty=false;chosen=null;pictureChange=null;clearLocalPhoto();pick(null);
+  notice('formStatus','메뉴 삭제 완료. GitHub Pages에 자동 반영됩니다.','good');
+ }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
+}
+async function reload(){
+ if(busy)return;if(dirty&&!confirm('저장하지 않은 수정내용을 버리고 최신 DB를 불러올까요?'))return;
+ lock(true);
+ try{var r=await readDb();db=r.value;sha=r.sha;dirty=false;var id=chosen;chosen=null;pick(db.records.some(function(x){return x.id===id;})?id:null);notice('formStatus','최신 DB 불러오기 완료.','good');}
+ catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
+}
+$('connect').addEventListener('click',connect);
+$('token').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();connect();}});
+$('logout').addEventListener('click',logout);
+$('newMenu').addEventListener('click',function(){pick(null);});
+$('search').addEventListener('input',renderList);
+$('photoInput').addEventListener('change',choosePhoto);
+$('clearPhoto').addEventListener('click',function(){clearLocalPhoto();pictureChange='';drawPhoto();markDirty();notice('formStatus','사진 연결이 제거됩니다. 저장 버튼을 누르면 반영됩니다.','progress');});
+$('form').addEventListener('input',markDirty);
+$('form').addEventListener('submit',function(e){e.preventDefault();save();});
+$('reload').addEventListener('click',reload);
+$('deleteMenu').addEventListener('click',remove);
+window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue='';}});
+})();
+</script></body></html>
