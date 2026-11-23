@@ -25,6 +25,30 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 .savebar{margin-top:20px;border-top:1px solid #edf1f5;padding-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.hidden,[hidden]{display:none!important}
 @media(max-width:870px){.work{grid-template-columns:1fr}.left{position:static}.items{max-height:240px}.right{padding:18px}.photo{grid-template-columns:1fr}}
 @media(max-width:570px){.fields{grid-template-columns:1fr}h1{font-size:27px}main{padding:20px 12px}.login{padding:18px}}
+
+/* Weekly discovery editorial workflow */
+.admin-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.admin-tabs button{background:#f2f5f7;border:1px solid #e4eaf0;color:#677684;padding:9px 5px;border-radius:8px;font-size:12px;font-weight:800}
+.admin-tabs button.active{background:#fff0e9;border-color:#ffcdbd;color:#cd5735}
+.review-tools{padding:0 4px 11px;display:flex;justify-content:space-between;gap:7px;align-items:center}
+.review-tools label{font-size:11px;color:#6a7e8e;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.review-tools input[type=checkbox]{width:auto;margin:0}
+.review-note{font-size:11px;line-height:1.6;color:#70828f;margin-top:7px}
+.item .tag{display:inline-block;background:#eff3f7;color:#62717d;padding:3px 6px;border-radius:6px;font-size:10px;margin-top:5px}
+.item .tag.done{background:#e2f7eb;color:#137a4b}
+.item .tag.out{background:#fff1e9;color:#a75c3c}
+.lead-actions{display:flex;gap:6px;flex-wrap:wrap;padding:0 11px 9px}
+.lead-actions button{padding:5px 8px;border-radius:6px;background:#f0f3f6;border:0;color:#687a88;font-size:11px}
+.lead-card{border-bottom:1px solid #edf0f4;padding:0 2px 7px}
+.lead-card>.item{border-radius:9px}
+.source-panel{background:#fff9ef;border:1px solid #f5dfb3;padding:14px 16px;border-radius:12px;margin:17px 0;color:#6d5234;line-height:1.65}
+.source-panel strong{display:block;color:#6a4d29;margin-bottom:7px}
+.source-panel .source-text{font-size:12px;overflow-wrap:anywhere}
+.source-panel a{display:inline-block;margin-top:9px;font-size:12px}
+.source-panel label{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:750;margin-top:12px;color:#5b4b33}
+.source-panel input[type=checkbox]{width:auto;margin-top:4px}
+.source-panel .attention{font-size:11px;color:#9a673b;margin-top:8px}
+
 </style></head><body>
 <header><div class="brand">K-FOOD <em>RADAR</em> <small style="font-size:11px;color:#94a0aa">CONTENT ADMIN</small></div><a href="./index.html" class="btn outline">← 공개 홈페이지</a></header>
 <main>
@@ -39,11 +63,25 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 </section>
 <section id="work" class="work hidden">
 <aside class="card left">
-<div class="left-head"><div class="actions" style="justify-content:space-between"><div><strong>출시 메뉴 DB</strong><div id="count" class="muted"></div></div><button id="newMenu" class="btn primary">+ 신규</button></div><input id="search" type="search" placeholder="상품명·브랜드·국가 검색"></div>
-<div id="items" class="items"></div>
+<div class="left-head">
+<div class="admin-tabs" role="group" aria-label="편집 목록 전환">
+<button id="menuTab" class="active" type="button">출시 이력</button>
+<button id="leadTab" type="button">주간 기사 검토</button>
+</div>
+<div id="menuTools"><div class="actions" style="justify-content:space-between"><div><strong>출시 메뉴 DB</strong><div id="count" class="muted"></div></div><button id="newMenu" class="btn primary">+ 신규</button></div><input id="search" type="search" placeholder="상품명·브랜드·국가 검색"></div>
+<div id="leadTools" class="hidden"><div class="actions" style="justify-content:space-between"><div><strong>기사 검토함</strong><div id="leadCount" class="muted">불러오는 중…</div></div><button id="refreshLeads" type="button" class="btn outline">새로고침</button></div><input id="leadSearch" type="search" placeholder="기사 제목·브랜드 검색"><div class="review-tools"><label><input id="pendingOnly" type="checkbox" checked> 검토 대기만 보기</label></div><div class="review-note">기사 후보는 확정 출시 정보가 아닙니다. 클릭해 원문을 확인하고 메뉴로 등록하세요.</div></div>
+</div>
+<div id="items" class="items"></div><div id="leadList" class="items hidden"></div>
 </aside>
 <section class="card right">
 <div class="actions" style="justify-content:space-between"><div><h2 id="formTitle">메뉴 수정</h2><span id="recordId" class="muted"></span></div><span id="dirty" class="muted">변경사항 없음</span></div>
+<div id="sourcePanel" class="source-panel hidden">
+<strong id="sourceHeading">기사 검토</strong>
+<div id="sourceText" class="source-text"></div>
+<a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">기사 원문 열기 ↗</a>
+<label id="verifyLabel"><input id="verifyLaunch" type="checkbox">원문 등으로 실제 메뉴 출시 사실과 상품명을 확인했습니다.</label>
+<div id="verifyHint" class="attention">기사 게시일은 출시일과 다를 수 있습니다. 실제 출시일·국가·메뉴명을 직접 확인하고 등록하세요.</div>
+</div>
 <form id="form" novalidate>
 <div class="section">상품 기본 정보</div><div class="fields">
 <div class="field"><label>출시일 *</label><input name="date" required placeholder="2026-11-10 또는 2026-11"></div>
@@ -60,6 +98,7 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 <div class="field full"><label>원문 URL</label><input name="url" type="url" maxlength="1800" placeholder="https://..."></div>
 <div class="field full"><label>출시일 근거 / 비고</label><textarea name="dateBasis" rows="3" maxlength="2500"></textarea></div>
 <div class="field"><label>출처 유형</label><input name="sourceType" maxlength="150" placeholder="브랜드 공식"></div>
+<div class="field full"><label>참고 기사 제목</label><input name="sourceHeadline" maxlength="500" placeholder="주간 기사에서 등록하면 자동으로 채워집니다"></div>
 </div>
 <div class="section">상품 사진</div>
 <div class="photo"><div id="photoPreview" class="empty">사진 미등록</div>
@@ -73,15 +112,16 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 <script>
 (function(){
 'use strict';
-var OWNER='ljheejh9448-sketch',REPO='kfood-qsr-radar',DATA='site/data/launches.json',ROOT='/repos/'+OWNER+'/'+REPO,ENDPOINT=ROOT+'/contents/'+DATA;
-var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType'];
+var OWNER='ljheejh9448-sketch',REPO='kfood-qsr-radar',DATA='site/data/launches.json',ROOT='/repos/'+OWNER+'/'+REPO,ENDPOINT=ROOT+'/contents/'+DATA,CANDIDATE_ENDPOINT=ROOT+'/contents/site/data/candidates.json';
+var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType','sourceHeadline'];
 var token='',sha='',db=null,chosen=null,dirty=false,busy=false,newPicture=null,previewUrl='',pictureChange=null;
+var news=null,newsSha='',activeLeadId=null,activeTab='menus';
 var $=function(x){return document.getElementById(x);};
 var form=$('form');
 var today=function(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());};
 function notice(id,message,kind){var n=$(id);n.className='status '+(kind||'');n.hidden=false;n.textContent=message;}
 function errorText(e){if(e.status===401)return '토큰이 유효하지 않거나 만료됐습니다.';if(e.status===403)return 'GitHub 쓰기 권한이 없습니다. 토큰의 저장소 및 Contents 권한을 확인해주세요.';if(e.status===409||e.status===422)return '서버의 파일이 변경되었거나 GitHub가 저장을 거절했습니다. 최신 DB를 다시 읽어주세요.';return e.message||String(e);}
-function lock(value){busy=value;['connect','newMenu','save','deleteMenu','reload','logout'].forEach(function(id){$(id).disabled=value;});}
+function lock(value){busy=value;['connect','newMenu','save','deleteMenu','reload','logout','refreshLeads','menuTab','leadTab'].forEach(function(id){$(id).disabled=value;});}
 function b64decode(s){var raw=atob(s.replace(/\s/g,'')),bytes=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);return new TextDecoder().decode(bytes);}
 function b64encode(s){var bytes=new TextEncoder().encode(s),raw='';for(var i=0;i<bytes.length;i+=8192)raw+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192));return btoa(raw);}
 async function request(path,config){
@@ -96,6 +136,113 @@ async function readDb(){
  var res=await request(ENDPOINT+'?ref=main');if(!res.sha||!res.content)throw Error('메뉴 DB 파일을 읽지 못했습니다.');
  var value=JSON.parse(b64decode(res.content));if(!Array.isArray(value.records))throw Error('DB 형식 오류');return {value:value,sha:res.sha};
 }
+async function readNews(){
+ var res=await request(CANDIDATE_ENDPOINT+'?ref=main');
+ if(!res.sha||!res.content)throw Error('주간 기사 후보를 읽을 수 없습니다.');
+ var value=JSON.parse(b64decode(res.content));
+ if(!Array.isArray(value.records))throw Error('기사 후보 데이터 형식 오류');
+ return {value:value,sha:res.sha};
+}
+function getLead(id){return news?.records?.find(function(x){return x.id===id;});}
+function linkedRecord(lead){return db?.records?.find(function(r){return r.sourceCandidateId===lead.id;});}
+function leadStatus(lead){return linkedRecord(lead)?'출시 이력 등록':lead.reviewStatus==='제외'?'검토 제외':'검토 대기';}
+function switchTab(tab){
+ activeTab=tab;
+ $('menuTools').classList.toggle('hidden',tab!=='menus');
+ $('leadTools').classList.toggle('hidden',tab!=='leads');
+ $('items').classList.toggle('hidden',tab!=='menus');
+ $('leadList').classList.toggle('hidden',tab!=='leads');
+ $('menuTab').classList.toggle('active',tab==='menus');
+ $('leadTab').classList.toggle('active',tab==='leads');
+ renderList();renderLeads();
+}
+function showSource(){
+ var id=activeLeadId||record()?.sourceCandidateId;
+ var lead=getLead(id),panel=$('sourcePanel');
+ panel.classList.toggle('hidden',!lead);
+ if(!lead)return;
+ var isDraft=!!activeLeadId;
+ $('sourceHeading').textContent=isDraft?'주간 기사 검토 → 출시 메뉴 등록':'기사 기반 등록 이력';
+ $('sourceText').textContent=(lead.brand||'')+' · '+(lead.publishedAt||'').slice(0,10)+' / '+(lead.title||'');
+ var href=String(lead.url||'');
+ $('sourceLink').hidden=!/^https?:\/\//i.test(href);
+ if(!$('sourceLink').hidden)$('sourceLink').href=href;
+ $('verifyLabel').hidden=!isDraft;
+ $('verifyHint').hidden=!isDraft;
+ $('verifyLaunch').checked=false;
+}
+function renderLeads(){
+ if(!news||!db)return;
+ var q=$('leadSearch').value.trim().toLowerCase(),only=$('pendingOnly').checked;
+ var rows=news.records.filter(function(lead){
+  return (!only||leadStatus(lead)==='검토 대기')&&(!q||[lead.title,lead.brand,lead.source].some(function(v){return String(v||'').toLowerCase().includes(q);}));
+ }).sort(function(a,b){return String(b.publishedAt||'').localeCompare(String(a.publishedAt||''));});
+ var pending=news.records.filter(function(lead){return leadStatus(lead)==='검토 대기';}).length;
+ $('leadCount').textContent='검토 대기 '+pending+'건 · 전체 '+news.records.length+'건';
+ var root=$('leadList');root.replaceChildren();
+ if(!rows.length){var empty=document.createElement('div');empty.className='muted';empty.style.padding='18px';empty.textContent='해당하는 기사 후보가 없습니다.';root.appendChild(empty);return;}
+ rows.forEach(function(lead){
+  var status=leadStatus(lead),card=document.createElement('div');card.className='lead-card';
+  var button=document.createElement('button');button.type='button';button.className='item'+(activeLeadId===lead.id?' active':'');
+  var content=document.createElement('span'),title=document.createElement('strong'),meta=document.createElement('small'),tag=document.createElement('small');
+  title.textContent=lead.title||'(기사 제목 미확인)';
+  meta.textContent=[lead.brand,(lead.publishedAt||'').slice(0,10),lead.source].filter(Boolean).join(' · ');
+  tag.className='tag'+(status==='출시 이력 등록'?' done':status==='검토 제외'?' out':'');
+  tag.textContent=status;content.append(title,meta,tag);button.append(content);
+  button.addEventListener('click',function(){selectLead(lead.id);});
+  var actions=document.createElement('div');actions.className='lead-actions';
+  if(status!=='출시 이력 등록'){
+   var review=document.createElement('button');review.type='button';review.textContent=status==='검토 제외'?'다시 검토':'검토 제외';
+   review.addEventListener('click',function(){setLeadReview(lead.id,status==='검토 제외'?'검토 대기':'제외');});
+   actions.append(review);
+  }
+  if(/^https?:\/\//i.test(String(lead.url||''))){
+    var external=document.createElement('a');external.href=lead.url;external.target='_blank';external.rel='noopener noreferrer';external.textContent='기사 원문 ↗';external.style.fontSize='11px';actions.append(external);
+  }
+  card.append(button,actions);root.append(card);
+ });
+}
+function selectLead(id){
+ if(busy)return;
+ var lead=getLead(id);if(!lead)return;
+ var registered=linkedRecord(lead);
+ if(registered){
+  if(pick(registered.id)!==false){switchTab('menus');notice('formStatus','이미 출시 이력에 등록된 기사입니다. 기존 메뉴 정보를 편집할 수 있습니다.','good');}
+  return;
+ }
+ if(lead.reviewStatus==='제외'){
+  notice('formStatus','검토 제외된 기사입니다. 목록에서 ‘다시 검토’를 먼저 선택하세요.','error');return;
+ }
+ if(pick(null)===false)return;
+ activeLeadId=lead.id;
+ var input=form.elements;
+ input.namedItem('date').value='';
+ input.namedItem('brand').value=String(lead.brand||'');
+ input.namedItem('product').value='';
+ input.namedItem('url').value=String(lead.url||'');
+ input.namedItem('sourceHeadline').value=String(lead.title||'').slice(0,500);
+ input.namedItem('sourceType').value='뉴스 기사 (추가 확인 필요)';
+ input.namedItem('dateBasis').value='기사 발행일 '+(lead.publishedAt||'').slice(0,10)+' · 실제 메뉴 출시일 별도 확인 필요';
+ $('formTitle').textContent='기사에서 신규 메뉴 등록';
+ $('recordId').textContent='기사 '+lead.id+' · 출시 사실 확인 후 저장';
+ showSource();markDirty();switchTab('leads');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+async function setLeadReview(id,status){
+ if(busy)return;
+ if(!confirm(status==='제외'?'해당 기사를 검토 대상에서 제외할까요?':'해당 기사를 검토 대기로 되돌릴까요?'))return;
+ lock(true);
+ try{
+  var latest=await readNews();if(latest.sha!==newsSha)throw Error('기사 목록이 자동 수집으로 갱신되었습니다. 새로고침 후 다시 시도하세요.');
+  var next=JSON.parse(JSON.stringify(news)),target=next.records.find(function(r){return r.id===id;});
+  if(!target)throw Error('해당 기사를 찾을 수 없습니다.');
+  target.reviewStatus=status;
+  await request(CANDIDATE_ENDPOINT,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'review: '+(status==='제외'?'exclude':'restore')+' QSR news candidate',sha:newsSha,content:b64encode(JSON.stringify(next,null,2)+'\n'),branch:'main'})});
+  var updated=await readNews();news=updated.value;newsSha=updated.sha;
+  if(activeLeadId===id&&status==='제외'){activeLeadId=null;}
+  renderLeads();notice('formStatus','기사 검토 상태가 저장되었습니다. 홈페이지도 자동 갱신됩니다.','good');
+ }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
+}
 function imagePath(s){return /^assets\/uploads\/[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/.test(String(s||''));}
 function record(){return db?.records?.find(function(r){return r.id===chosen;});}
 function clearLocalPhoto(){if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl='';newPicture=null;$('photoInput').value='';}
@@ -106,14 +253,14 @@ function drawPhoto(){
 }
 function markDirty(){dirty=true;$('dirty').textContent='● 미저장 변경사항';}
 function pick(id,internal){
- if(busy&&!internal)return;if(dirty&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return;
- dirty=false;chosen=id;pictureChange=null;clearLocalPhoto();
+ if(busy&&!internal)return false;if(dirty&&!internal&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return false;
+ dirty=false;chosen=id;activeLeadId=null;pictureChange=null;clearLocalPhoto();
  var r=record();fields.forEach(function(key){form.elements.namedItem(key).value=r?.[key]||'';});
  if(!r)form.elements.namedItem('monitoredAt').value=today();
  $('formTitle').textContent=r?'기존 메뉴 수정':'신규 메뉴 추가';
  $('recordId').textContent=r?'DB ID: '+r.id:'저장 시 신규 ID 자동 생성';
  $('deleteMenu').hidden=!r;$('dirty').textContent='변경사항 없음';$('formStatus').hidden=true;
- drawPhoto();renderList();
+ drawPhoto();renderList();showSource();renderLeads();return true;
 }
 function renderList(){
  if(!db)return;var q=$('search').value.trim().toLowerCase();
@@ -136,13 +283,14 @@ async function connect(){
   var u=await request('/user');if(String(u.login||'').toLowerCase()!==OWNER)throw Error('이 저장소에서 허용된 관리자 계정이 아닙니다.');
   var repository=await request(ROOT);if(!(repository.permissions?.push||repository.permissions?.admin))throw Error('GitHub 저장소의 쓰기 권한이 없습니다.');
   var res=await readDb();db=res.value;sha=res.sha;
+  var fetchedNews=await readNews();news=fetchedNews.value;newsSha=fetchedNews.sha;
   $('loginPanel').hidden=true;$('work').classList.remove('hidden');$('accountBar').classList.remove('hidden');$('userName').textContent='● '+u.login+' · 관리자';
   dirty=false;chosen=null;pick(null,true);
  }catch(e){token='';notice('loginStatus',errorText(e),'error');}finally{lock(false);}
 }
 function logout(){
  if(busy)return;if(dirty&&!confirm('변경사항을 저장하지 않고 로그아웃할까요?'))return;
- token='';db=null;sha='';chosen=null;dirty=false;clearLocalPhoto();pictureChange=null;
+ token='';db=null;sha='';chosen=null;dirty=false;clearLocalPhoto();pictureChange=null;news=null;newsSha='';activeLeadId=null;
  $('work').classList.add('hidden');$('accountBar').classList.add('hidden');$('loginPanel').hidden=false;
  notice('loginStatus','로그아웃 완료. 토큰은 저장하지 않았습니다.','good');
 }
@@ -171,7 +319,9 @@ function fromForm(){
  if(!obj.country||!obj.brand||!obj.product)throw Error('출시일, 국가, 브랜드, 상품명은 필수입니다.');
  if(obj.url){var url;try{url=new URL(obj.url);}catch(e){throw Error('출처 URL이 올바르지 않습니다.');}if(!['http:','https:'].includes(url.protocol))throw Error('출처 URL은 http 또는 https만 허용됩니다.');}
  obj.id=chosen||'manual-'+crypto.randomUUID();
- obj.status=chosen?(record()?.status||'관리자 수정'):'관리자 등록';
+ obj.status=chosen?(record()?.status||'관리자 수정'):(activeLeadId?'관리자 검증·등록':'관리자 등록');
+ if(activeLeadId){obj.sourceCandidateId=activeLeadId;obj.sourcePublishedAt=getLead(activeLeadId)?.publishedAt||'';}
+ else if(chosen&&record()?.sourceCandidateId){obj.sourceCandidateId=record().sourceCandidateId;obj.sourcePublishedAt=record().sourcePublishedAt||'';}
  obj.image=pictureChange===null?(record()?.image||''):pictureChange;
  return obj;
 }
@@ -186,18 +336,23 @@ async function store(next,commit){
  var verified=await readDb();db=verified.value;sha=verified.sha;
 }
 async function save(){
- if(busy)return;var row;try{row=fromForm();}catch(e){notice('formStatus',errorText(e),'error');return;}
+ if(busy)return;var row;try{
+   row=fromForm();
+   if(activeLeadId&&!$('verifyLaunch').checked)throw Error('기사에 대한 실제 메뉴 출시 사실을 확인한 후 확인란을 선택해주세요.');
+   if(activeLeadId&&!row.sourceHeadline)throw Error('연결된 기사 제목을 확인해주세요.');
+ }catch(e){notice('formStatus',errorText(e),'error');return;}
  lock(true);notice('formStatus','저장소의 최신 데이터와 충돌 여부를 확인합니다…','progress');
  try{
   var latest=await readDb();if(latest.sha!==sha)throw Error('다른 편집자가 먼저 수정했습니다. 최신 DB 다시 읽기 후 재시도해주세요.');
-  if(newPicture){notice('formStatus','메뉴 사진을 GitHub에 업로드하고 있습니다…','progress');row.image=await uploadPhoto(newPicture);}
+  if(activeLeadId&&db.records.some(function(x){return x.sourceCandidateId===activeLeadId;}))throw Error('이 기사는 이미 출시 이력에 등록되어 있습니다. 최신 DB를 다시 읽어주세요.');
+   if(newPicture){notice('formStatus','메뉴 사진을 GitHub에 업로드하고 있습니다…','progress');row.image=await uploadPhoto(newPicture);}
   var next=JSON.parse(JSON.stringify(db)),idx=next.records.findIndex(function(x){return x.id===row.id;});
   if(idx>=0)next.records[idx]=Object.assign({},next.records[idx],row);else next.records.unshift(row);
   next.sourceAsOf=today();notice('formStatus','수정된 DB를 저장하고 있습니다…','progress');
   await store(next,(idx>=0?'data: edit menu ':'data: add menu ')+row.product);
-  clearLocalPhoto();dirty=false;chosen=row.id;pictureChange=null;
+  clearLocalPhoto();dirty=false;chosen=row.id;activeLeadId=null;pictureChange=null;
   var saved=record();fields.forEach(function(key){form.elements.namedItem(key).value=saved[key]||'';});
-  $('formTitle').textContent='기존 메뉴 수정';$('recordId').textContent='DB ID: '+row.id;$('deleteMenu').hidden=false;$('dirty').textContent='저장 완료';renderList();drawPhoto();
+  $('formTitle').textContent='기존 메뉴 수정';$('recordId').textContent='DB ID: '+row.id;$('deleteMenu').hidden=false;$('dirty').textContent='저장 완료';renderList();renderLeads();drawPhoto();showSource();
   notice('formStatus','GitHub 저장 성공! 홈페이지는 자동 재배포됩니다. 배포 후 새로고침하여 확인하세요.','good');
  }catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
 }
@@ -215,9 +370,19 @@ async function remove(){
 async function reload(){
  if(busy)return;if(dirty&&!confirm('저장하지 않은 수정내용을 버리고 최신 DB를 불러올까요?'))return;
  lock(true);
- try{var r=await readDb();db=r.value;sha=r.sha;dirty=false;var id=chosen;chosen=null;pick(db.records.some(function(x){return x.id===id;})?id:null,true);notice('formStatus','최신 DB 불러오기 완료.','good');}
+ try{
+ var r=await readDb(),c=await readNews();
+ db=r.value;sha=r.sha;news=c.value;newsSha=c.sha;
+ dirty=false;var id=chosen;chosen=null;pick(db.records.some(function(x){return x.id===id;})?id:null,true);
+ renderLeads();notice('formStatus','메뉴 및 기사 목록을 최신 상태로 다시 읽었습니다.','good');
+ }
  catch(e){notice('formStatus',errorText(e),'error');}finally{lock(false);}
 }
+$('menuTab').addEventListener('click',function(){switchTab('menus');});
+$('leadTab').addEventListener('click',function(){switchTab('leads');});
+$('leadSearch').addEventListener('input',renderLeads);
+$('pendingOnly').addEventListener('change',renderLeads);
+$('refreshLeads').addEventListener('click',reload);
 $('connect').addEventListener('click',connect);
 $('token').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();connect();}});
 $('logout').addEventListener('click',logout);
