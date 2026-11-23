@@ -12,7 +12,7 @@ https://ljheejh9448-sketch.github.io/kfood-qsr-radar/
 - 국가·브랜드·Flavor·판매 유형별 필터 및 검색
 - 메뉴 상세 정보와 원문 링크
 - CSV 내보내기
-- 매주 월요일 **09:17 KST** Google News RSS에서 새 기사 후보 수집
+- 매주 일요일 **22:00 KST** Google News RSS에서 새 기사 후보 수집
 - 새 기사 후보는 **검토 대기**로 표시하며, 확정 출시 이력에 자동 추가하지 않음
 
 ## 운영 방식
@@ -21,7 +21,7 @@ https://ljheejh9448-sketch.github.io/kfood-qsr-radar/
 - `site/data/candidates.json`: 주간 신규 기사 후보 DB
 - `scripts/weekly_scan.py`: Google News RSS 기사 검색 및 중복 제거 스크립트
 - `.github/workflows/deploy-pages.yml`: 홈페이지 GitHub Pages 게시
-- `.github/workflows/weekly-monitor.yml`: 매주 월요일 기사 후보 업데이트 후 홈페이지 배포
+- `.github/workflows/weekly-monitor.yml`: 매주 일요일 밤 10시(한국시간) 기사 후보 업데이트 후 홈페이지 배포
 
 ## 최초 배포 설정
 
