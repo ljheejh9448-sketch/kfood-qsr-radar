@@ -1217,14 +1217,15 @@
       "price": "버거 299루피\n기존 버거 229루피\n70루피 차이",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-001",
-      "image": "",
+      "image": "assets/uploads/trend-2026-001_KFC_India_Korean_Dunked_Line.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 3,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-03-01",
@@ -1240,14 +1241,15 @@
       "price": "피자 36.99,49.99,59.99PLN\n(SIZE)\n파스타 34.99PLN\n\n베이크드 23.99PLN",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-002",
-      "image": "",
+      "image": "assets/uploads/trend-2026-002_PizzaHut_Poland_Sunny_K_Wave.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 4,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-09-17",
@@ -1264,14 +1266,15 @@
       "monitoredAt": "2026-11-23",
       "extraNote": "한국맥도날드가 기획과 ‘고추장 버터 소스’ 개발을 주도했으며, 각 국가·지역은 현지 입맛과 식문화, 할랄 등 식품 규정에 맞춰 메뉴 형태와 맛을 일부 변형해 선보일 예정",
       "id": "trend-2026-003",
-      "image": "",
+      "image": "assets/uploads/trend-2026-003_McDonalds_Korea_Gochujang_Butter.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 5,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "엑셀 비고: 한국맥도날드가 기획과 ‘고추장 버터 소스’ 개발을 주도했으며, 각 국가·지역은 현지 입맛과 식문화, 할랄 등 식품 규정에 맞춰 메뉴 형태와 맛을 일부 변형해 선보일 예정"
+      "dateBasis": "엑셀 비고: 한국맥도날드가 기획과 ‘고추장 버터 소스’ 개발을 주도했으며, 각 국가·지역은 현지 입맛과 식문화, 할랄 등 식품 규정에 맞춰 메뉴 형태와 맛을 일부 변형해 선보일 예정",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-01-08",
@@ -1287,14 +1290,15 @@
       "price": "딥핑소스: 59PHP\nFlavor Shots Ala Carte: 95PHP",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-004",
-      "image": "",
+      "image": "assets/uploads/trend-2026-004_KFC_Philippines_KBBQ_Flavor_Shots.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 6,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-01-09",
@@ -1310,14 +1314,15 @@
       "price": "버거: $10.49\n샌드위치: $10.49\n치킨 바이트: $6.49\n쉐이크: $6.99\n감자튀김: $5.49\n",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-005",
-      "image": "",
+      "image": "assets/uploads/trend-2026-005_ShakeShack_US_Korean_Style_Menu.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 7,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-03-01",
@@ -1333,14 +1338,15 @@
       "price": "TWD 340 (포장 반값 행사)",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-006",
-      "image": "",
+      "image": "assets/uploads/trend-2026-006_Dominos_Taiwan_WBC_Quattro.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 8,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-03-27",
@@ -1356,14 +1362,15 @@
       "price": "12.40유로(€)",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-007",
-      "image": "",
+      "image": "assets/uploads/trend-2026-007_Subway_France_Korean_Chicken.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 9,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-03-26",
@@ -1379,14 +1386,15 @@
       "price": "라이스볼: $14.95\n치킨플레이트: $15.45",
       "monitoredAt": "2026-11-23",
       "id": "trend-2026-008",
-      "image": "",
+      "image": "assets/uploads/trend-2026-008_Sweetgreen_US_KBBQ_Chicken.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 10,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-04-15",
@@ -1402,14 +1410,15 @@
       "price": "McCrispy AUD 11.30\nMcSpicy AUD 12.15\n딥핑소스 별도 판매가 미확인",
       "monitoredAt": "2026-11-26",
       "id": "trend-2026-009",
-      "image": "",
+      "image": "assets/uploads/trend-2026-009_McDonalds_Australia_Korean_Sticky_BBQ.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 11,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-07-22",
@@ -1426,14 +1435,15 @@
       "price": "버거: $12.99\n치킨 바이트: $7.99\n샌드위치: $16.24",
       "monitoredAt": "2026-11-26",
       "id": "trend-2026-010",
-      "image": "",
+      "image": "assets/uploads/trend-2026-010_Habit_US_Jet_Tila_Korean_Menu.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 12,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-08-03",
@@ -1449,14 +1459,15 @@
       "price": "비프버거: $9.99\n치킨버거: $9.99\n샌드위치: $3.99(R)/$5.99(L)",
       "monitoredAt": "2026-11-26",
       "id": "trend-2026-011",
-      "image": "",
+      "image": "assets/uploads/trend-2026-011_Wayback_US_K_BBQ.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 13,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-08-27",
@@ -1472,14 +1483,15 @@
       "price": "SGD 33.95 (R)\nSGD 46.55 (L)",
       "monitoredAt": "2026-11-26",
       "id": "trend-2026-012",
-      "image": "",
+      "image": "assets/uploads/trend-2026-012_PizzaHut_Singapore_Soy_Garlic.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 14,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     },
     {
       "date": "2026-10-27",
@@ -1495,14 +1507,15 @@
       "price": "USD 14.99",
       "monitoredAt": "2026-11-26",
       "id": "trend-2026-013",
-      "image": "",
+      "image": "assets/uploads/trend-2026-013_Bonchon_US_Udon.webp",
       "recordType": "excel-monitoring",
       "origin": "QSR Trend Monitoring.xlsx",
       "sourceSheet": "QSR K-FOOD MONITORING",
       "sourceRow": 15,
       "status": "엑셀 기반 조사자료 (별도 재검증 전)",
       "sourceType": "엑셀 기재 원문",
-      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전"
+      "dateBasis": "업로드 엑셀 기재 출시일. 공식 출시일 여부 별도 재검증 전",
+      "imageSource": "QSR Trend Monitoring.xlsx — Excel embedded photo; owner approved public use"
     }
   ],
   "schemaVersion": 1,
