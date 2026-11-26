@@ -176,11 +176,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
   const detailImage = x => { const src=safeImage(x.image); return src ? '<img class="detail-photo" src="'+esc(src)+'" alt="'+esc(x.product)+'">' : ''; };
   const dateText = (s) => { if(!s)return '미확인'; const d=String(s); return /^\d{4}-\d{2}/.test(d) ? d.replaceAll('-', '.') : d; };
   const freq = (arr, key) => { const m = new Map(); arr.forEach((x) => {let v=(typeof key==='function'?key(x):x[key])||'기타';m.set(v,(m.get(v)||0)+1)});return [...m].sort((a,b)=>b[1]-a[1]); };
-  const topFlavor = (t) => {const s=String(t||'').toLowerCase(); if(/고추장|gochujang/.test(s))return '고추장';if(/김치|kimchi/.test(s))return '김치';if(/bulgogi|불고기|bbq|바비큐|갈비/.test(s))return 'K-BBQ'; if(/soy|간장/.test(s))return '간장·소이갈릭';if(/yangnyeom|양념/.test(s))return '양념치킨';return '기타 K-Flavor';};
+  const topFlavor = (t) => {const s=String(t||'').toLowerCase(); if(/고추장|gochujang/.test(s))return '고추장';if(/김치|kimchi/.test(s))return '김치';if(/bulgogi|불고기|bbq|바비큐|갈비/.test(s))return 'K-BBQ'; if(/soy|소이|간장/.test(s))return '간장·소이갈릭';if(/yangnyeom|양념/.test(s))return '양념치킨';return '기타 K-Flavor';};
   const extractDate = x => String(x.date||'').padEnd(10,'-00');
+  const workbookRecords = () => state.launches.filter(x=>x.recordType==='excel-monitoring');
+  const compactText = s => String(s||'').split(/\n/)[0].trim();
   const setText=(sel,s) => { const node=$(sel);if(node)node.textContent=s; };
   function openView(view) {
-    if(!['dashboard','launches','updates','method'].includes(view))view='dashboard';
+    if(!['dashboard','monitoring','launches','updates','method'].includes(view))view='dashboard';
     state.view = view;
     $$('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+view));
     $$('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.view===view));
@@ -190,24 +192,52 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
   function navigate(view) { location.hash = '#'+view; openView(view); }
   function fillSelect(sel, values) { const select=$(sel); values.forEach((v)=>{const opt=document.createElement('option');opt.value=v;opt.textContent=v;select.appendChild(opt);}); }
   function renderDashboard() {
-    const items=state.launches;
+    const items=workbookRecords();
     setText('#stat-total', items.length);
     setText('#stat-countries',new Set(items.map(x=>x.country)).size);
     setText('#stat-brands',new Set(items.map(x=>x.brand)).size);
     setText('#stat-candidates',state.leads.length);
     setText('.top-badge',state.candidateMeta?.lastScanKst ? '● WEEKLY SCAN · 기록 있음' : '● WEEKLY SCAN · 미실행');
-    setText('#side-count',items.length);
-    setText('#asof-label',`HISTORY · AS OF ${dateText(state.meta.sourceAsOf||'2026-11-23')}`);
-    setText('#updated-tag',`DATA REVIEWED · ${dateText(state.meta.sourceAsOf||'2026-11-23')}`);
+    setText('#side-count',state.launches.length);
+    setText('#monitoring-side-count',items.length);
+    setText('#asof-label',`WORKBOOK · AS OF ${dateText(state.meta.monitoringWorkbook?.importedAt||state.meta.sourceAsOf||'2026-11-26')}`);
+    setText('#updated-tag',`SOURCE · QSR Trend Monitoring.xlsx · ${dateText(state.meta.monitoringWorkbook?.importedAt||'2026-11-26')}`);
     const flavors=freq(items,x=>topFlavor(x.flavor)); const highest=flavors[0]?.[1]||1;
     $('#flavor-bars').innerHTML=flavors.map(([k,v])=>`<div class="bar-row"><span title="${esc(k)}">${esc(k)}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(v/highest*100)}%"></div></div><strong>${v}</strong></div>`).join('');
     $('#country-list').innerHTML=freq(items,'country').slice(0,7).map(([k,v],i)=>`<div class="country-row"><span class="country-rank">${String(i+1).padStart(2,'0')}</span><span class="country-flag">${countries[k]||'🌐'}</span><span class="country-name">${esc(k)}</span><span class="country-count">${v}</span></div>`).join('');
     const latest=[...items].sort((a,b)=>extractDate(b).localeCompare(extractDate(a))).slice(0,6);
     $('#recent-grid').innerHTML=latest.map(x=>`<article class="recent-card" data-id="${esc(x.id)}" role="button" tabindex="0" aria-label="${esc(x.product)} 자세히 보기"><div class="food-art ${/치킨|윙|텐더/.test(x.category)?'art-chicken':''}">${foodImage(x)}<span class="food-art-flag">${countries[x.country]||'🌐'}</span></div><div class="recent-content"><div class="recent-meta">${esc(x.brand)} <span>·</span> ${esc(x.country)} · ${dateText(x.date)}</div><div class="recent-title">${esc(x.product)}</div><div class="recent-desc">${esc(x.characteristics)}</div><div class="recent-bottom"><span class="pill">${esc(topFlavor(x.flavor))}</span><span class="mini-arrow">↗</span></div></div></article>`).join('');
   }
+  function switchSheet(sheet){
+    if(!['kfood','lto','takeaway'].includes(sheet))sheet='kfood';
+    $('.sheet-tab').forEach(b=>{b.classList.toggle('active',b.dataset.sheet===sheet);b.setAttribute('aria-selected',b.dataset.sheet===sheet?'true':'false');});
+    $('.sheet-panel').forEach(el=>el.classList.toggle('active',el.id==='sheet-'+sheet));
+  }
+  function initMonitoringFilters(){
+    const rows=workbookRecords();
+    const market=$('#monitoring-country'), flavor=$('#monitoring-flavor');
+    market.replaceChildren(new Option('전체 국가',''));flavor.replaceChildren(new Option('전체 Flavor',''));
+    [...new Set(rows.map(x=>x.country))].sort((a,b)=>a.localeCompare(b,'ko')).forEach(v=>market.add(new Option(v,v)));
+    [...new Set(rows.map(x=>topFlavor(x.flavor)))].sort((a,b)=>a.localeCompare(b,'ko')).forEach(v=>flavor.add(new Option(v,v)));
+    setText('#campaign-count',rows.length);
+    setText('#trk-total',rows.length);
+    setText('#trk-markets',new Set(rows.map(x=>x.country)).size);
+    setText('#trk-brands',new Set(rows.map(x=>x.brand)).size);
+  }
+  function renderMonitoring(){
+    const q=$('#monitoring-search').value.trim().toLowerCase();
+    const country=$('#monitoring-country').value,flavor=$('#monitoring-flavor').value;
+    const cases=workbookRecords().filter(x=>(!country||x.country===country)&&(!flavor||topFlavor(x.flavor)===flavor)&&(!q||[x.country,x.brand,x.product,x.flavor,x.category,x.characteristics,x.launchType].some(t=>String(t||'').toLowerCase().includes(q)))).sort((a,b)=>extractDate(b).localeCompare(extractDate(a)));
+    setText('#tracker-match-count',cases.length);
+    $('#campaign-grid').innerHTML=cases.length?cases.map(x=>{
+      const src=safeImage(x.image),icon=categoryEmoji(x.category);
+      const picture=src?`<img src="${esc(src)}" alt="${esc(compactText(x.product))}" loading="lazy">`:icon;
+      return `<article class="campaign-card" role="button" tabindex="0" data-id="${esc(x.id)}" aria-label="${esc(compactText(x.product))} 상세 보기"><div class="campaign-visual">${picture}</div><div class="campaign-content"><div class="campaign-meta">${esc(x.brand)} · ${esc(x.country)} · ${dateText(x.date)}</div><h3 class="campaign-name">${esc(x.product)}</h3><p class="campaign-desc">${esc(x.characteristics)}</p><div class="campaign-bottom"><span class="pill">${esc(topFlavor(x.flavor))}</span><span class="campaign-type">${esc(compactText(x.launchType))}</span><span class="mini-arrow">↗</span></div></div></article>`;
+    }).join(''):'<div class="empty-state">검색 조건에 맞는 엑셀 출시 사례가 없습니다.</div>';
+  }
   function getFiltered() {
-    const q=$('#search-input').value.trim().toLowerCase();const country=$('#country-filter').value;const brand=$('#brand-filter').value;const flavor=$('#flavor-filter').value;const typ=$('#type-filter').value;
-    const matched=state.launches.filter(x=> (!country||x.country===country)&&(!brand||x.brand===brand)&&(!flavor||topFlavor(x.flavor)===flavor)&&(!typ||x.salesType===typ)&&(!q||[x.country,x.brand,x.product,x.category,x.flavor,x.characteristics,x.launchType,x.salesType].some(v=>String(v).toLowerCase().includes(q))));
+    const q=$('#search-input').value.trim().toLowerCase();const country=$('#country-filter').value;const brand=$('#brand-filter').value;const flavor=$('#flavor-filter').value;const typ=$('#type-filter').value;const source=$('#source-filter').value;
+    const matched=state.launches.filter(x=>(!source||(source==='archive'?x.recordType!=='excel-monitoring':x.recordType===source))&&(!country||x.country===country)&&(!brand||x.brand===brand)&&(!flavor||topFlavor(x.flavor)===flavor)&&(!typ||x.salesType===typ)&&(!q||[x.country,x.brand,x.product,x.category,x.flavor,x.characteristics,x.launchType,x.salesType].some(v=>String(v).toLowerCase().includes(q))));
     const sort=$('#sort-filter').value; matched.sort((a,b)=>sort==='brand'?(a.brand.localeCompare(b.brand,'ko')||extractDate(b).localeCompare(extractDate(a))):sort==='oldest'?extractDate(a).localeCompare(extractDate(b)):extractDate(b).localeCompare(extractDate(a)));
     return matched;
   }
@@ -222,7 +252,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     const x=state.launches.find(r=>r.id===id);if(!x)return;
     const field=(label,value)=>`<div class="detail-field"><small>${label}</small><strong>${esc(value||'미확인')}</strong></div>`;
     const url=safeUrl(x.url);
-    $('#modal-body').innerHTML=`<div class="modal-eyebrow">${esc(x.brand)} · ${countries[x.country]||'🌐'} ${esc(x.country)}</div><h2 id="modal-title" class="modal-title">${esc(x.product)}</h2><div class="modal-sub">${dateText(x.date)} · ${esc(x.category)}</div><span class="pill">${esc(x.flavor)}</span>${detailImage(x)}<p class="modal-desc">${esc(x.characteristics)}</p><div class="detail-grid">${field('상품 분류',x.category)}${field('출시 유형',x.launchType)}${field('판매 형태',x.salesType)}${field('판매가격',x.price)}${field('모니터링일',x.monitoredAt)}${field('출처 유형',x.sourceType)}</div>${url?`<a class="source-button" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문 확인 ↗</a>`:'<span class="source-button disabled">출처 미확인</span>'}<p class="modal-basis"><strong>출시일 근거 / 비고</strong><br>${esc(x.dateBasis||'미기재')}</p>`;
+    const metaLine=x.recordType==='excel-monitoring'?'<span class="source-tag">QSR Trend Monitoring.xlsx · 캠페인 단위 · 재검증 필요</span>':'<span class="source-tag">기존 출시 이력 · 상품/개별 기록</span>';
+    const extra=x.extraNote?`<p class="modal-basis"><strong>엑셀 추가 비고</strong>\n${esc(x.extraNote)}</p>`:'';
+    const sourceName=x.sourceName?`<p class="modal-basis"><strong>엑셀 기재 출처명</strong>\n${esc(x.sourceName)} (URL 미기재)</p>`:'';
+    $('#modal-body').innerHTML=`<div class="modal-eyebrow">${esc(x.brand)} · ${countries[x.country]||'🌐'} ${esc(x.country)}</div><h2 id="modal-title" class="modal-title">${esc(x.product)}</h2>${metaLine}<div class="modal-sub">${dateText(x.date)} · ${esc(x.category)}</div><span class="pill">${esc(x.flavor)}</span>${detailImage(x)}<p class="modal-desc">${esc(x.characteristics)}</p><div class="detail-grid">${field('상품 분류',x.category)}${field('출시 유형',x.launchType)}${field('판매 형태',x.salesType)}${field('판매가격',x.price)}${field('모니터링일',x.monitoredAt)}${field('출처 유형',x.sourceType)}</div>${url?`<a class="source-button" href="${esc(url)}" target="_blank" rel="noopener noreferrer">원문 확인 ↗</a>`:'<span class="source-button disabled">출처 미확인</span>'}<p class="modal-basis"><strong>출시일 근거 / 비고</strong><br>${esc(x.dateBasis||'미기재')}</p>${extra}${sourceName}`;
     $('#modal-root').hidden=false;document.body.style.overflow='hidden';$('#modal-close').focus();
   }
   function closeDetail(){$('#modal-root').hidden=true;document.body.style.overflow='';}
@@ -243,7 +276,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     $('#candidate-list').innerHTML=items.length?items.map(x=>{const linked=linkedLaunch(x);const status=leadReviewState(x);return `<article class="queue-card"><div><div class="queue-top"><span class="pill grey">${esc(status)}</span><span>${esc(x.brand||'QSR')}</span><span>·</span><span>${esc(dateText((x.publishedAt||'').slice(0,10)))}</span><span>·</span><span>${esc(x.source||'뉴스 RSS')}</span></div><h3>${esc(x.title)}</h3><p>검색 그룹: ${esc(x.query||'—')}</p></div><div>${safeUrl(x.url)?`<a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener noreferrer">원문 기사 ↗</a>`:''}${linked?`<button class="detail-link" type="button" data-linked-id="${esc(linked.id)}">등록된 메뉴 보기 ↗</button>`:''}</div></article>`}).join(''):`<div class="empty-state"><span class="empty-icon">⌕</span><strong>${state.leads.length?'검색 조건에 맞는 기사가 없습니다':'아직 수집된 신규 기사 후보가 없습니다'}</strong>${state.leads.length?'다른 검색어나 브랜드를 선택하세요.':'GitHub Pages 배포 및 매주 일요일 밤 10시 자동 수집이 활성화되면 이곳에 기사 후보가 누적됩니다.'}</div>`;
   }
   function csvExport(){
-    const cols=[['출시일','date'],['국가','country'],['브랜드','brand'],['이미지','image'],['품목','category'],['상품명','product'],['Flavor','flavor'],['메뉴 특징','characteristics'],['출시 유형','launchType'],['판매 형태','salesType'],['URL','url'],['판매가','price'],['모니터링일','monitoredAt'],['출시일 근거/비고','dateBasis'],['출처 유형','sourceType']];
+    const cols=[['출시일','date'],['국가','country'],['브랜드','brand'],['이미지','image'],['품목','category'],['상품명','product'],['Flavor','flavor'],['메뉴 특징','characteristics'],['출시 유형','launchType'],['판매 형태','salesType'],['URL','url'],['판매가','price'],['모니터링일','monitoredAt'],['출시일 근거/비고','dateBasis'],['출처 유형','sourceType'],['원본 엑셀','origin'],['모니터링 시트','sourceSheet'],['모니터링 단위','recordType'],['추가 비고','extraNote'],['원문 이름(URL 미기재)','sourceName']];
     const quote=x=>'"'+String(x??'').replaceAll('"','""')+'"';
     const str='\uFEFF'+[cols.map(c=>c[0]),...state.matched.map(x=>cols.map(c=>x[c[1]]))].map(row=>row.map(quote).join(',')).join('\r\n');
     const blob=new Blob([str],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`QSR_KFood_Launches_${new Date().toISOString().slice(0,10)}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);
@@ -251,12 +284,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
   function bind(){
     window.addEventListener('hashchange',()=>openView(location.hash.slice(1)));
     $('#menu-toggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
-    $('#hero-explore').addEventListener('click',()=>navigate('launches'));
-    $('#more-launches').addEventListener('click',()=>navigate('launches'));
+    $('#hero-explore').addEventListener('click',()=>navigate('monitoring'));
+    $('#more-launches').addEventListener('click',()=>navigate('monitoring'));
     $$('.side-filter').forEach(b=>b.addEventListener('click',()=>{navigate('launches');$('#flavor-filter').value=b.dataset.preset;renderLaunches(true);}));
     $$('.nav-item').forEach(a=>a.addEventListener('click',()=>$('#sidebar').classList.remove('open')));
-    for(const sel of ['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter','#sort-filter']){$(sel).addEventListener(sel==='#search-input'?'input':'change',()=>renderLaunches(true));}
-    $('#reset-filters').addEventListener('click',()=>{['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter'].forEach(s=>$(s).value='');renderLaunches(true);});
+    $('.sheet-tab').forEach(b=>b.addEventListener('click',()=>switchSheet(b.dataset.sheet)));
+    for(const selector of ['#monitoring-search','#monitoring-country','#monitoring-flavor']){const node=$(selector);node.addEventListener(selector==='#monitoring-search'?'input':'change',renderMonitoring);}
+    $('#campaign-grid').addEventListener('click',e=>{const card=e.target.closest('[data-id]');if(card)showDetail(card.dataset.id);});
+    $('#campaign-grid').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('[data-id]')){e.preventDefault();showDetail(e.target.closest('[data-id]').dataset.id);}});
+    for(const sel of ['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter','#source-filter','#sort-filter']){$(sel).addEventListener(sel==='#search-input'?'input':'change',()=>renderLaunches(true));}
+    $('#reset-filters').addEventListener('click',()=>{['#search-input','#country-filter','#brand-filter','#flavor-filter','#type-filter','#source-filter'].forEach(s=>$(s).value='');renderLaunches(true);});
     $('#launch-tbody').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b)showDetail(b.dataset.id)});
     $('#recent-grid').addEventListener('click',e=>{const c=e.target.closest('[data-id]');if(c)showDetail(c.dataset.id)});
     $('#recent-grid').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('[data-id]');if(c){e.preventDefault();showDetail(c.dataset.id)}}});
@@ -281,7 +318,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
       fillSelect('#brand-filter',freq(state.launches,'brand').map(x=>x[0]));
       fillSelect('#flavor-filter',freq(state.launches,x=>topFlavor(x.flavor)).map(x=>x[0]));
       fillSelect('#type-filter',freq(state.launches,'salesType').map(x=>x[0]));
-      renderDashboard();renderLaunches();renderWeekly();openView(location.hash.slice(1)||'dashboard');
+      initMonitoringFilters();renderMonitoring();switchSheet('kfood');renderDashboard();renderLaunches();renderWeekly();openView(location.hash.slice(1)||'dashboard');
     } catch(err){
       console.error(err);
       $('#app').insertAdjacentHTML('afterbegin','<div class="load-error">데이터를 불러오지 못했습니다. 웹서버에서 사이트를 실행했는지 확인하세요. (로컬 미리보기: python -m http.server)</div>');
