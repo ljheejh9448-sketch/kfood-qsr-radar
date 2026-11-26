@@ -23,6 +23,11 @@ for (const filename of ["index.html","admin.html"]) {
 const index=fs.readFileSync(root+"/index.html","utf8");
 assert.ok(index.includes("data/launches.json"), "Homepage must load editable data");
 assert.ok(index.includes("admin.html"), "Admin link not found");
+assert.ok(!/(?<!\$)\$\(['"][^'"]+['"]\)\.forEach\(/.test(index), "querySelector result cannot be iterated; use $ (querySelectorAll)");
+assert.ok(!/(?<!\$)\$\(['"][^'"]+['"]\)\.map\(/.test(index), "querySelector result cannot use map; use $ (querySelectorAll)");
+assert.ok(index.includes("id=\"view-monitoring\""), "Workbook monitoring view missing");
+assert.ok(index.includes("function renderMonitoring()"), "Workbook cards renderer missing");
+
 const admin=fs.readFileSync(root+"/admin.html","utf8");
 assert.ok(admin.includes("https://api.github.com") && admin.includes("site/data/launches.json"),"Admin editor not wired to GitHub");
 assert.ok(!/localStorage\s*\.|sessionStorage\s*\./.test(admin),"Admin must not persist credentials");
