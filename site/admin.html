@@ -84,6 +84,7 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 </div>
 <form id="form" novalidate>
 <div class="section">상품 기본 정보</div><div class="fields">
+<div class="field full"><label>데이터 구분 / 홈페이지 집계 기준</label><select name="recordType"><option value="archive">기존 출시 이력 · 개별 상품 기록</option><option value="excel-monitoring">QSR K-FOOD 모니터링 · 캠페인 단위</option></select></div>
 <div class="field"><label>출시일 *</label><input name="date" required placeholder="2026-11-10 또는 2026-11"></div>
 <div class="field"><label>국가 *</label><input name="country" required maxlength="100" placeholder="인도"></div>
 <div class="field"><label>브랜드 *</label><input name="brand" required maxlength="140" placeholder="KFC"></div>
@@ -115,7 +116,7 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 (function(){
 'use strict';
 var OWNER='ljheejh9448-sketch',REPO='kfood-qsr-radar',DATA='site/data/launches.json',ROOT='/repos/'+OWNER+'/'+REPO,ENDPOINT=ROOT+'/contents/'+DATA,CANDIDATE_ENDPOINT=ROOT+'/contents/site/data/candidates.json';
-var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType','sourceHeadline','extraNote','sourceName'];
+var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType','sourceHeadline','extraNote','sourceName','recordType'];
 var token='',sha='',db=null,chosen=null,dirty=false,busy=false,newPicture=null,previewUrl='',pictureChange=null;
 var news=null,newsSha='',activeLeadId=null,activeTab='menus';
 var $=function(x){return document.getElementById(x);};
@@ -258,6 +259,7 @@ function pick(id,internal){
  if(busy&&!internal)return false;if(dirty&&!internal&&!confirm('저장되지 않은 내용이 있습니다. 다른 메뉴를 선택할까요?'))return false;
  dirty=false;chosen=id;activeLeadId=null;pictureChange=null;clearLocalPhoto();
  var r=record();fields.forEach(function(key){form.elements.namedItem(key).value=r?.[key]||'';});
+ form.elements.namedItem('recordType').value=r?.recordType==='excel-monitoring'?'excel-monitoring':(!r&&$('sourceFilterAdmin').value==='excel-monitoring'?'excel-monitoring':'archive');
  if(!r)form.elements.namedItem('monitoredAt').value=today();
  $('formTitle').textContent=r?'기존 메뉴 수정':'신규 메뉴 추가';
  $('recordId').textContent=r?'DB ID: '+r.id:'저장 시 신규 ID 자동 생성';
@@ -322,7 +324,8 @@ function fromForm(){
  if(!obj.country||!obj.brand||!obj.product)throw Error('출시일, 국가, 브랜드, 상품명은 필수입니다.');
  if(obj.url){var url;try{url=new URL(obj.url);}catch(e){throw Error('출처 URL이 올바르지 않습니다.');}if(!['http:','https:'].includes(url.protocol))throw Error('출처 URL은 http 또는 https만 허용됩니다.');}
  obj.id=chosen||'manual-'+crypto.randomUUID();
- obj.status=chosen?(record()?.status||'관리자 수정'):(activeLeadId?'관리자 검증·등록':'관리자 등록');
+ obj.status=chosen?(record()?.status||'관리자 수정'):(activeLeadId?'관리자 검증·등록':obj.recordType==='excel-monitoring'?'관리자 모니터링 등록':'관리자 등록');
+ if(!chosen&&obj.recordType==='excel-monitoring'){obj.origin='관리자 신규 등록';obj.sourceSheet='QSR K-FOOD MONITORING';}
  if(activeLeadId){obj.sourceCandidateId=activeLeadId;obj.sourcePublishedAt=getLead(activeLeadId)?.publishedAt||'';}
  else if(chosen&&record()?.sourceCandidateId){obj.sourceCandidateId=record().sourceCandidateId;obj.sourcePublishedAt=record().sourcePublishedAt||'';}
  obj.image=pictureChange===null?(record()?.image||''):pictureChange;
