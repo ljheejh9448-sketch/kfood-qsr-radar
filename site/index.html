@@ -217,8 +217,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
   }
   function switchSheet(sheet){
     if(!['kfood','lto','takeaway'].includes(sheet))sheet='kfood';
-    $('.sheet-tab').forEach(b=>{b.classList.toggle('active',b.dataset.sheet===sheet);b.setAttribute('aria-selected',b.dataset.sheet===sheet?'true':'false');});
-    $('.sheet-panel').forEach(el=>el.classList.toggle('active',el.id==='sheet-'+sheet));
+    $$('.sheet-tab').forEach(b=>{b.classList.toggle('active',b.dataset.sheet===sheet);b.setAttribute('aria-selected',b.dataset.sheet===sheet?'true':'false');});
+    $$('.sheet-panel').forEach(el=>el.classList.toggle('active',el.id==='sheet-'+sheet));
   }
   function initMonitoringFilters(){
     const rows=workbookRecords();
@@ -295,7 +295,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     $('#more-launches').addEventListener('click',()=>navigate('monitoring'));
     $$('.side-filter').forEach(b=>b.addEventListener('click',()=>{navigate('launches');$('#flavor-filter').value=b.dataset.preset;renderLaunches(true);}));
     $$('.nav-item').forEach(a=>a.addEventListener('click',()=>$('#sidebar').classList.remove('open')));
-    $('.sheet-tab').forEach(b=>b.addEventListener('click',()=>switchSheet(b.dataset.sheet)));
+    $$('.sheet-tab').forEach(b=>b.addEventListener('click',()=>switchSheet(b.dataset.sheet)));
     for(const selector of ['#monitoring-search','#monitoring-country','#monitoring-flavor']){const node=$(selector);node.addEventListener(selector==='#monitoring-search'?'input':'change',renderMonitoring);}
     $('#campaign-grid').addEventListener('click',e=>{const card=e.target.closest('[data-id]');if(card)showDetail(card.dataset.id);});
     $('#campaign-grid').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('[data-id]')){e.preventDefault();showDetail(e.target.closest('[data-id]').dataset.id);}});
