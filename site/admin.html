@@ -68,7 +68,7 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 <button id="menuTab" class="active" type="button">출시 이력</button>
 <button id="leadTab" type="button">주간 기사 검토</button>
 </div>
-<div id="menuTools"><div class="actions" style="justify-content:space-between"><div><strong>출시 메뉴 DB</strong><div id="count" class="muted"></div></div><button id="newMenu" class="btn primary">+ 신규</button></div><input id="search" type="search" placeholder="상품명·브랜드·국가 검색"></div>
+<div id="menuTools"><div class="actions" style="justify-content:space-between"><div><strong>출시 메뉴 DB</strong><div id="count" class="muted"></div></div><button id="newMenu" class="btn primary">+ 신규</button></div><input id="search" type="search" placeholder="상품명·브랜드·국가 검색"><select id="sourceFilterAdmin" aria-label="출시 기록 출처 구분" style="margin-top:9px"><option value="">전체 기록</option><option value="excel-monitoring">엑셀 모니터링 13건</option><option value="archive">기존 출시 이력</option></select><p class="muted" style="margin:7px 0 0">이번 엑셀의 캠페인 행은 기존 상품별 기록과 중복될 수 있습니다.</p></div>
 <div id="leadTools" class="hidden"><div class="actions" style="justify-content:space-between"><div><strong>기사 검토함</strong><div id="leadCount" class="muted">불러오는 중…</div></div><button id="refreshLeads" type="button" class="btn outline">새로고침</button></div><input id="leadSearch" type="search" placeholder="기사 제목·브랜드 검색"><div class="review-tools"><label><input id="pendingOnly" type="checkbox" checked> 검토 대기만 보기</label></div><div class="review-note">기사 후보는 확정 출시 정보가 아닙니다. 클릭해 원문을 확인하고 메뉴로 등록하세요.</div></div>
 </div>
 <div id="items" class="items"></div><div id="leadList" class="items hidden"></div>
@@ -98,6 +98,8 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 <div class="field full"><label>원문 URL</label><input name="url" type="url" maxlength="1800" placeholder="https://..."></div>
 <div class="field full"><label>출시일 근거 / 비고</label><textarea name="dateBasis" rows="3" maxlength="2500"></textarea></div>
 <div class="field"><label>출처 유형</label><input name="sourceType" maxlength="150" placeholder="브랜드 공식"></div>
+<div class="field full"><label>엑셀 추가 비고</label><textarea name="extraNote" rows="2" maxlength="2500" placeholder="엑셀 원본의 추가 비고를 유지합니다"></textarea></div>
+<div class="field full"><label>출처명 (URL이 없는 경우)</label><input name="sourceName" maxlength="500" placeholder="기사 제목 등 출처 설명"></div>
 <div class="field full"><label>참고 기사 제목</label><input name="sourceHeadline" maxlength="500" placeholder="주간 기사에서 등록하면 자동으로 채워집니다"></div>
 </div>
 <div class="section">상품 사진</div>
@@ -113,7 +115,7 @@ input,textarea,select{min-width:0;width:100%;border:1px solid #dce4ea;border-rad
 (function(){
 'use strict';
 var OWNER='ljheejh9448-sketch',REPO='kfood-qsr-radar',DATA='site/data/launches.json',ROOT='/repos/'+OWNER+'/'+REPO,ENDPOINT=ROOT+'/contents/'+DATA,CANDIDATE_ENDPOINT=ROOT+'/contents/site/data/candidates.json';
-var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType','sourceHeadline'];
+var fields=['date','country','brand','product','category','flavor','launchType','salesType','price','monitoredAt','characteristics','url','dateBasis','sourceType','sourceHeadline','extraNote','sourceName'];
 var token='',sha='',db=null,chosen=null,dirty=false,busy=false,newPicture=null,previewUrl='',pictureChange=null;
 var news=null,newsSha='',activeLeadId=null,activeTab='menus';
 var $=function(x){return document.getElementById(x);};
@@ -264,7 +266,8 @@ function pick(id,internal){
 }
 function renderList(){
  if(!db)return;var q=$('search').value.trim().toLowerCase();
- var rows=db.records.filter(function(r){return !q||[r.product,r.brand,r.country,r.flavor].some(function(s){return String(s||'').toLowerCase().includes(q);});}).sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''));});
+ var source=$('sourceFilterAdmin').value;
+ var rows=db.records.filter(function(r){return (!source||(source==='archive'?r.recordType!=='excel-monitoring':r.recordType===source))&&(!q||[r.product,r.brand,r.country,r.flavor].some(function(s){return String(s||'').toLowerCase().includes(q);}));}).sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''));});
  $('count').textContent=db.records.length+'건 등록 · '+rows.length+'건 표시';
  var root=$('items');root.replaceChildren();
  rows.forEach(function(r){
@@ -388,6 +391,7 @@ $('token').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventD
 $('logout').addEventListener('click',logout);
 $('newMenu').addEventListener('click',function(){pick(null);});
 $('search').addEventListener('input',renderList);
+$('sourceFilterAdmin').addEventListener('change',renderList);
 $('photoInput').addEventListener('change',choosePhoto);
 $('clearPhoto').addEventListener('click',function(){clearLocalPhoto();pictureChange='';drawPhoto();markDirty();notice('formStatus','사진 연결이 제거됩니다. 저장 버튼을 누르면 반영됩니다.','progress');});
 $('form').addEventListener('input',markDirty);
