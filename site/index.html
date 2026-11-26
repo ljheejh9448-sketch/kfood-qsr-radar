@@ -313,8 +313,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
     const kst = new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'short',day:'numeric'}).format(new Date());setText('#today-label',kst);
   }
   async function init(){
-    bind();
     try {
+      bind();
       const [history,news]=await Promise.all([
         fetch('data/launches.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('launches '+r.status);return r.json()}),
         fetch('data/candidates.json',{cache:'no-store'}).then(r=>r.ok?r.json():{records:[],lastScanKst:null,status:'pending',newItems:0}).catch(()=>({records:[],status:'pending'}))
@@ -328,7 +328,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[r
       initMonitoringFilters();renderMonitoring();switchSheet('kfood');renderDashboard();renderLaunches();renderWeekly();openView(location.hash.slice(1)||'dashboard');
     } catch(err){
       console.error(err);
-      $('#app').insertAdjacentHTML('afterbegin','<div class="load-error">데이터를 불러오지 못했습니다. 웹서버에서 사이트를 실행했는지 확인하세요. (로컬 미리보기: python -m http.server)</div>');
+      $('#app').insertAdjacentHTML('afterbegin','<div class="load-error" role="alert">홈페이지 표시 중 오류가 발생했습니다. 새로고침 후에도 지속되면 관리자에게 알려주세요.</div>');
     }
   }
   init();
